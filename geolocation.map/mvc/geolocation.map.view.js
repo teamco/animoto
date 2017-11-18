@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'modules/View',
   'element/header.element',
   'element/footer.element',
@@ -23,7 +23,7 @@ define([
    * @extends BaseView
    * @constructor
    */
-  let GeolocationMapView = function GeolocationMapView() {
+  var GeolocationMapView = function GeolocationMapView() {
   };
 
   return GeolocationMapView.extend('GeolocationMapView', {
@@ -80,7 +80,7 @@ define([
        * Define data
        * @type {*|{}}
        */
-      let data = this.controller.getRules();
+      var data = this.controller.getRules();
 
       /**
        * Define GeolocationMap Rules Element

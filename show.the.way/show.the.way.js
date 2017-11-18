@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-define([
+defineP([
   'config/anthill',
   'modules/MVC',
   'plugins/widgets/show.the.way/mvc/show.the.way.controller',

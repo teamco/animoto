@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-define([
+defineP([
   'config/anthill',
   'modules/MVC',
   'plugins/widgets/ebaums.world/mvc/ebaums.world.controller',

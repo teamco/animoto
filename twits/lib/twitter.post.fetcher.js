@@ -214,7 +214,7 @@ var twitterFetcher = function () {
 // dateFormatter, false);
 
 // For advanced example which allows you to customize how tweet time is
-// formatted you simply define a function which takes a JavaScript date as a
+// formatted you simply defineP a function which takes a JavaScript date as a
 // parameter and returns a string!
 // See http://www.w3schools.com/jsref/jsref_obj_date.asp for properties
 // of a Date object.

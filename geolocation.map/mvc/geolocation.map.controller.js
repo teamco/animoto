@@ -5,7 +5,7 @@
  * Time: 11:03 AM
  */
 
-define([
+defineP([
       'modules/Geolocation',
       'plugins/plugin.controller',
       'plugins/widgets/widget.content.controller'
@@ -29,7 +29,7 @@ define([
        * @extends WidgetContentController
        * @constructor
        */
-      let GeolocationMapController = function GeolocationMapController() {
+      var GeolocationMapController = function GeolocationMapController() {
       };
 
       return GeolocationMapController.extend(
@@ -41,7 +41,7 @@ define([
              */
             setEmbeddedContent: function setEmbeddedContent() {
 
-              let latitude = this.model.getPrefs('geolocationmapLatitude'),
+              var latitude = this.model.getPrefs('geolocationmapLatitude'),
                   longitude = this.model.getPrefs('geolocationmapLongitude');
 
               if (!latitude || !longitude) {

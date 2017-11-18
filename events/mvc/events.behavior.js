@@ -1,4 +1,4 @@
-define([], function defineEventsBehavior() {
+defineP([], function defineEventsBehavior() {
 
   /**
    * Define EventsBehavior

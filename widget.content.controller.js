@@ -5,7 +5,7 @@
  * Time: 11:46 PM
  */
 
-define([
+defineP([
   'plugins/preferences/preferences.controller',
   'plugins/preferences/widget.content.preferences.controller',
   'plugins/rules/widget/widget.content.controller.rules'

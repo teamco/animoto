@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element'
 ], function defineGeolocationMapElement(PluginElement) {
 
@@ -18,7 +18,7 @@ define([
    * @class GeolocationMapElement
    * @extends PluginElement
    */
-  let GeolocationMapElement = function GeolocationMapElement(view, opts) {
+  var GeolocationMapElement = function GeolocationMapElement(view, opts) {
 
     this._config(view, opts, $('<div />')).build({
       $container: opts.$container,
@@ -51,7 +51,7 @@ define([
      */
     renderEmbeddedContent: function renderEmbeddedContent(opts) {
 
-      let url = [
+      var url = [
         'https://maps.googleapis.com/maps/api/staticmap',
         '?center=', opts.latitude, ',', opts.longitude,
         '&markers=color:blue|label:S|', opts.latitude, ',', opts.longitude,

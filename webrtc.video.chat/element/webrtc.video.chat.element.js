@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'element/button.element'
 ], function defineWebrtcVideoChatElement(PluginElement, ButttonElement) {

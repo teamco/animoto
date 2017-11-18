@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/rules/widget/widget.base.rules'
 ], function defineGeolocationMapRulesElement(PluginElement, BaseWidgetRules) {
@@ -20,7 +20,7 @@ define([
    * @extends PluginElement
    * @extends BaseWidgetRules
    */
-  let GeolocationMapRulesElement = function GeolocationMapRulesElement(view,
+  var GeolocationMapRulesElement = function GeolocationMapRulesElement(view,
       opts) {
 
     this._config(view, opts, $('<div />')).build({

@@ -1,4 +1,4 @@
-define(function definePetPassportBehavior() {
+defineP(function definePetPassportBehavior() {
 
   var PetPassportBehavior = function PetPassportBehavior() {
     this.editMenu = $('.editModeMenu');

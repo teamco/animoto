@@ -1,4 +1,4 @@
-define([
+defineP([
   'modules/Geolocation'
 ], function definePetRadarBehavior(BaseGeolocation) {
 

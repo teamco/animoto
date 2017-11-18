@@ -1,4 +1,4 @@
-define([], function defineMultipleIconsBehavior() {
+defineP([], function defineMultipleIconsBehavior() {
   var MultipleIconsBehavior = function MultipleIconsBehavior() {
     this.iconsDB = [
       {

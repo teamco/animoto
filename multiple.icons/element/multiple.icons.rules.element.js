@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/rules/widget/widget.base.rules'
 ], function defineMultipleIconsRulesElement(PluginElement, BaseWidgetRules) {

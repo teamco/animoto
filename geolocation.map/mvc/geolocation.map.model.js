@@ -5,7 +5,7 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
+defineP([
   'modules/Model',
   'plugins/widgets/widget.content.model'
 ], function defineGeolocationMapModel(BaseModel, WidgetContentModel) {
@@ -17,7 +17,7 @@ define([
    * @class GeolocationMapModel
    * @constructor
    */
-  let GeolocationMapModel = function GeolocationMapModel() {
+  var GeolocationMapModel = function GeolocationMapModel() {
 
     /**
      * Define preferences

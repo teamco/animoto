@@ -1,4 +1,4 @@
-define([], function defineOnlineFriendsBehavior() {
+defineP([], function defineOnlineFriendsBehavior() {
   var OnlineFriendsBehavior = function OnlineFriendsBehavior() {
 
     this.mainContainer = $('.onlinefriends .mainContainer');

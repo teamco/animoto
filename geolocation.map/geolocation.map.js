@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-define([
+defineP([
   'config/anthill',
   'modules/MVC',
   'plugins/widgets/geolocation.map/mvc/geolocation.map.controller',
@@ -24,7 +24,7 @@ define([
    * @class GeolocationMap
    * @extends AntHill
    */
-  let GeolocationMap = function GeolocationMap(containment, opts) {
+  var GeolocationMap = function GeolocationMap(containment, opts) {
 
     /**
      * Define containment
@@ -56,7 +56,7 @@ define([
      *      }
      * }}
      */
-    let DEFAULTS = {
+    var DEFAULTS = {
       plugin: true,
       html: {
         style: 'default',

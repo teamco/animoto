@@ -1,4 +1,4 @@
-define(function defineAvatarBehavior() {
+defineP(function defineAvatarBehavior() {
 
   /**
    * Define Avatar Behavior

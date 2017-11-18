@@ -5,7 +5,7 @@
  * Time: 1:09 AM
  */
 
-define([], function defineWidgetContentModel() {
+defineP([], function defineWidgetContentModel() {
 
   /**
    * Define Widget content model

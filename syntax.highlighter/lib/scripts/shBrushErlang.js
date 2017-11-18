@@ -29,7 +29,7 @@
         'case catch cond div end fun if let not of or orelse ' +
         'query receive rem try when xor' +
         // additional
-        ' module export import define';
+        ' module export import defineP';
 
     this.regexList = [
       {regex: new RegExp("[A-Z][A-Za-z0-9_]+", 'g'), css: 'constants'},

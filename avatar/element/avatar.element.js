@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/widgets/avatar/lib/avatar.behavior'
 ], function defineAvatarElement(PluginElement, AvatarBehavior) {

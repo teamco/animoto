@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'modules/Permission'
 ], function defineGeolocationMapPermission(BasePermission) {
 
@@ -16,8 +16,7 @@ define([
    * @constructor
    * @extends BasePermission
    */
-  let GeolocationMapPermission = function GeolocationMapPermission() {
-
+  var GeolocationMapPermission = function GeolocationMapPermission() {
   };
 
   return GeolocationMapPermission.extend('GeolocationMapPermission', {},

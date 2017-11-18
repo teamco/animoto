@@ -5,7 +5,7 @@
  * Time: 11:03 AM
  */
 
-define(
+defineP(
     [
       'lib/jquery/jquery.knob',
       'modules/Geolocation',

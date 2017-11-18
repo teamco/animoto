@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 // https://paypal.github.io/JavaScriptButtons/#addbutton
-define([
+defineP([
   'config/anthill',
   'modules/MVC',
   'plugins/widgets/paypal.btn/mvc/paypal.btn.controller',

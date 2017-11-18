@@ -5,7 +5,7 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-define([
+defineP([
   'modules/Model',
   'plugins/widgets/widget.content.model'
 ], function defineSyntaxHighlighterModel(BaseModel, WidgetContentModel) {
@@ -100,7 +100,7 @@ define([
       var index = this.syntaxHighlighterData.name.indexOf(name);
 
       if (index === -1) {
-        this.scope.logger.warn('Unable to define entity', type, name);
+        this.scope.logger.warn('Unable to defineP entity', type, name);
         return false;
       }
 

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([
+defineP([
   'plugins/widgets/widget.content.event.manager'
 ], function defineGeolocationMapEventManager(WidgetContentEventManager) {
 
@@ -17,7 +17,7 @@ define([
    * @extends WidgetContentEventManager
    * @extends BaseEvent
    */
-  let GeolocationMapEventManager = function GeolocationMapEventManager() {
+  var GeolocationMapEventManager = function GeolocationMapEventManager() {
 
     this.updateEventList({
       getLocation: 'get.location'

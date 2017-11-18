@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element'
   // 'plugins/widgets/multiple.icons/mvc/multiple.icons.behavior'
 ], function defineMultipleIconsElement(PluginElement) {

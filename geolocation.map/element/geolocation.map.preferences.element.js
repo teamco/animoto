@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-define([
+defineP([
   'plugins/plugin.element',
   'plugins/preferences/widget.preferences'
 ], function defineGeolocationMapPreferencesElement(PluginElement,
@@ -21,7 +21,7 @@ define([
    * @extends PluginElement
    * @extends WidgetPreferences
    */
-  let GeolocationMapPreferencesElement = function GeolocationMapPreferencesElement(view,
+  var GeolocationMapPreferencesElement = function GeolocationMapPreferencesElement(view,
       opts) {
 
     this._config(view, opts, $('<div />')).build({

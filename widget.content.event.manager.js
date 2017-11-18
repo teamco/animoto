@@ -2,7 +2,7 @@
  * Created by teamco on 4/30/14.
  */
 
-define([
+defineP([
   'modules/Event'
 ], function defineWidgetContentEventManager(BaseEvent) {
 

@@ -13,7 +13,7 @@ $.fn.eventCalendar = function (options) {
 
   var eventsOpts = $.extend({}, $.fn.eventCalendar.defaults, options);
 
-  // define global vars for the function
+  // defineP global vars for the function
   var flags = {
     wrap: "",
     directionLeftMove: "300",
@@ -490,7 +490,7 @@ $.fn.eventCalendar = function (options) {
   }
 };
 
-// define the parameters with the default values of the function
+// defineP the parameters with the default values of the function
 $.fn.eventCalendar.defaults = {
   eventsjson: 'js/events.json',
   eventsLimit: 4,
