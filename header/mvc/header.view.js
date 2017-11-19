@@ -13,8 +13,7 @@ defineP([
   'plugins/widgets/header/element/header.element',
   'plugins/widgets/header/element/header.preferences.element',
   'plugins/widgets/header/element/header.rules.element'
-], function defineHeaderView(BaseView, Header, Footer, HeaderElement,
-    HeaderPreferencesElement, HeaderRulesElement) {
+], function defineHeaderView(BaseView, Header, Footer, HeaderElement, HeaderPreferencesElement, HeaderRulesElement) {
 
   /**
    * Define view
