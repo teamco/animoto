@@ -44,7 +44,7 @@ defineP([
       this.model.setPrefs(preference, value);
 
       this.scope.observer.publish(
-          this.scope.eventmanager.eventList.transferContentPreferences,
+          this.scope.eventManager.eventList.transferContentPreferences,
           [preference, value]
       );
     },

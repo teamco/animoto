@@ -33,8 +33,8 @@ defineP([
        * @type {splitEmbeddedContent|setEmbeddedContent|string}
        */
       var event = this.model.getPrefs('imageSplitContent') ?
-          this.eventmanager.eventList.splitEmbeddedContent :
-          this.eventmanager.eventList.analyzeEmbeddedContent;
+          this.eventManager.eventList.splitEmbeddedContent :
+          this.eventManager.eventList.analyzeEmbeddedContent;
 
       this.observer.publish(event);
     },
@@ -81,7 +81,7 @@ defineP([
       subscribers = this.base.define(
           subscribers,
           this.controller.getSubscribers(
-              this.eventmanager.eventList.splitEmbeddedContent
+              this.eventManager.eventList.splitEmbeddedContent
           )
       );
 
@@ -140,7 +140,7 @@ defineP([
           scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.publishRule,
+          scope.eventManager.eventList.publishRule,
           [$button.attr('value'), this.scope.name]
       );
     }

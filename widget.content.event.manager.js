@@ -123,7 +123,7 @@ defineP([
           publish[lname].push(event);
 
           scope.observer.publish(
-              scope.eventmanager.eventList.transferRules, {
+              scope.eventManager.eventList.transferRules, {
                 publish: publish,
                 subscribe: subscribe
               }

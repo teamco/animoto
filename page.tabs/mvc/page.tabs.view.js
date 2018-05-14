@@ -48,7 +48,7 @@ defineP([
       this.footer(Footer, this.get$container());
 
       this.scope.observer.publish(
-          this.scope.eventmanager.eventList.analyzeEmbeddedContent
+          this.scope.eventManager.eventList.analyzeEmbeddedContent
       );
     },
 
@@ -125,7 +125,7 @@ defineP([
     render: function render() {
 
       this.scope.observer.publish(
-          this.scope.eventmanager.eventList.successRendered,
+          this.scope.eventManager.eventList.successRendered,
           this.renderPageTabs.bind(this)
       );
     }

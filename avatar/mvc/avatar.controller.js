@@ -43,7 +43,7 @@ defineP([
       this.model.setAvatarCoordinateX(x);
       this.model.setAvatarCoordinateY(y);
       this.observer.publish(
-          this.eventmanager.eventList.alternativeSaveAllPreferences
+          this.eventManager.eventList.alternativeSaveAllPreferences
       );
     },
 

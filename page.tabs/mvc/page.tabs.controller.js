@@ -49,7 +49,7 @@ defineP([
 
           this.controller._subscribePageEventCallback.bind(this)(
               'afterUpdatePreferences',
-              this.eventmanager.eventList.setEmbeddedContent,
+              this.eventManager.eventList.setEmbeddedContent,
               page
           );
         }
@@ -63,7 +63,7 @@ defineP([
     subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
       this.controller._subscribePageEventCallback.bind(this)(
           'afterPageOrder',
-          this.eventmanager.eventList.setEmbeddedContent,
+          this.eventManager.eventList.setEmbeddedContent,
           this.controller.getWorkspace()
       );
     },
@@ -75,7 +75,7 @@ defineP([
     subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
       this.controller._subscribePageEventCallback.bind(this)(
           'afterSwitchToPage',
-          this.eventmanager.eventList.setActivePageTab,
+          this.eventManager.eventList.setActivePageTab,
           this.controller.getWorkspace()
       );
     },
@@ -87,7 +87,7 @@ defineP([
     subscribeCreatePageEvent: function subscribeCreatePageEvent() {
       this.controller._subscribePageEventCallback.bind(this)(
           'afterCreateItem',
-          this.eventmanager.eventList.setEmbeddedContent,
+          this.eventManager.eventList.setEmbeddedContent,
           this.controller.getWorkspace()
       );
     },
@@ -100,13 +100,13 @@ defineP([
 
       this.controller._subscribePageEventCallback.bind(this)(
           'afterDestroyItem',
-          this.eventmanager.eventList.setEmbeddedContent,
+          this.eventManager.eventList.setEmbeddedContent,
           this.controller.getWorkspace()
       );
 
       this.controller._subscribePageEventCallback.bind(this)(
           'afterDestroyItems',
-          this.eventmanager.eventList.setEmbeddedContent,
+          this.eventManager.eventList.setEmbeddedContent,
           this.controller.getWorkspace()
       );
     },
@@ -126,7 +126,7 @@ defineP([
        * Get workspace
        * @type {WorkspaceEventManager|PageEventManager}
        */
-      var eventmanager = scope.eventmanager;
+      var eventManager = scope.eventManager;
 
       /**
        * Get scope
@@ -134,10 +134,10 @@ defineP([
        */
       var pageTabs = this;
 
-      eventmanager.subscribe({
+      eventManager.subscribe({
 
         event: {
-          eventName: eventmanager.eventList[eventName]
+          eventName: eventManager.eventList[eventName]
         },
 
         callback: function _callbackSubscribePageEventCallback() {
@@ -166,7 +166,7 @@ defineP([
       );
 
       this.observer.publish(
-          this.eventmanager.eventList.setActivePageTab
+          this.eventManager.eventList.setActivePageTab
       );
     },
 
@@ -193,7 +193,7 @@ defineP([
         this.logger.debug('Open url', arguments);
 
         this.observer.publish(
-            this.eventmanager.eventList.openUrlOnEvent, [
+            this.eventManager.eventList.openUrlOnEvent, [
               $page.pageUrl,
               true,
               $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog
@@ -209,7 +209,7 @@ defineP([
         var workspace = this.controller.getWorkspace();
 
         workspace.observer.publish(
-            workspace.eventmanager.eventList.switchToPage, [
+            workspace.eventManager.eventList.switchToPage, [
               $page.pageTab,
               this.model.getPrefs('pagetabsSwipe')
             ]
@@ -240,7 +240,7 @@ defineP([
       var scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.publishRule,
+          scope.eventManager.eventList.publishRule,
           [$button.attr('value'), this.scope.name]
       );
     }

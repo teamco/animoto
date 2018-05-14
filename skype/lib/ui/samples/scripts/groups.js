@@ -34,7 +34,7 @@ $(function () {
    * the given collection of contacts.
    *
    * @param {Collection} contacts
-   * @param {String} title
+   * @param {string} title
    *
    * @returns A <div> element created with jQuery.
    */

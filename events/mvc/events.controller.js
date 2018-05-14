@@ -88,7 +88,7 @@ defineP([
 
             // Update
             this.observer.publish(
-                this.eventmanager.eventList.setActiveEvent,
+                this.eventManager.eventList.setActiveEvent,
                 events[timestamp]
             );
 
@@ -193,7 +193,7 @@ defineP([
 
           // Save prefs in containment
           scope.observer.publish(
-              scope.eventmanager.eventList.alternativeSavePreferences,
+              scope.eventManager.eventList.alternativeSavePreferences,
               ['eventsJson', json]
           );
         },

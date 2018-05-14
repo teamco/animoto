@@ -47,7 +47,7 @@ defineP([
               if (!latitude || !longitude) {
 
                 this.observer.publish(
-                    this.eventmanager.eventList.getLocation
+                    this.eventManager.eventList.getLocation
                 );
 
                 return false;

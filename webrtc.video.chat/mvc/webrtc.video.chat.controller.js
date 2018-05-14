@@ -55,13 +55,13 @@ defineP([
 
       phone.ready(function () {
         scope.observer.publish(
-            scope.eventmanager.eventList.chatReady
+            scope.eventManager.eventList.chatReady
         );
       });
 
       phone.receive(function (session) {
         scope.observer.publish(
-            scope.eventmanager.eventList.chatReceive,
+            scope.eventManager.eventList.chatReceive,
             session
         );
       });
@@ -82,14 +82,14 @@ defineP([
 
       session.connected(function (session) {
         scope.observer.publish(
-            scope.eventmanager.eventList.chatConnected,
+            scope.eventManager.eventList.chatConnected,
             session
         );
       });
 
       session.ended(function (session) {
         scope.observer.publish(
-            scope.eventmanager.eventList.chatReady,
+            scope.eventManager.eventList.chatReady,
             session
         );
       });
@@ -113,7 +113,7 @@ defineP([
     chatEnded: function chatEnded(session) {
       this.logger.debug('Chat ended', session);
       this.observer.publish(
-          this.eventmanager.eventList.setEmbeddedContent
+          this.eventManager.eventList.setEmbeddedContent
       );
     },
 
@@ -143,7 +143,7 @@ defineP([
 
       if (login.length) {
         scope.observer.publish(
-            scope.eventmanager.eventList.chatLogin,
+            scope.eventManager.eventList.chatLogin,
             login
         );
       }
@@ -167,7 +167,7 @@ defineP([
 
       if (call.length) {
         scope.observer.publish(
-            scope.eventmanager.eventList.chatCall,
+            scope.eventManager.eventList.chatCall,
             call
         );
       }
@@ -203,7 +203,7 @@ defineP([
           scope = this.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.publishRule,
+          scope.eventManager.eventList.publishRule,
           [$button.attr('value'), this.scope.name]
       );
     }

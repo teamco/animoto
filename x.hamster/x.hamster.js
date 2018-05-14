@@ -77,7 +77,7 @@ defineP([
     /**
      * Define MVC
      * @memberOf XHamster
-     * @type {MVC}
+     * @type {MVCJs}
      */
     this.mvc = new MVC({
       scope: this,
@@ -96,7 +96,7 @@ defineP([
     });
 
     this.observer.publish(
-        this.eventmanager.eventList.initWidget,
+        this.eventManager.eventList.initWidget,
         opts
     );
   };

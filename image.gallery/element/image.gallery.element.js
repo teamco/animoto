@@ -137,7 +137,7 @@ defineP([
 
       this.$.on('click.statistics', function clickStatisticsCallback(e) {
         this.view.scope.observer.publish(
-            this.view.scope.eventmanager.eventList.bindStatistics,
+            this.view.scope.eventManager.eventList.bindStatistics,
             e
         );
       }.bind(this))

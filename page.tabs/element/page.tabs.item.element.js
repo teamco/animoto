@@ -111,7 +111,7 @@ defineP([
       var scope = this.view.scope;
 
       scope.observer.publish(
-          scope.eventmanager.eventList.switchToPage,
+          scope.eventManager.eventList.switchToPage,
           [this, e]
       );
     }

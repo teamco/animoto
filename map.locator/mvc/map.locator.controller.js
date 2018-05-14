@@ -44,7 +44,7 @@ defineP(
             setEmbeddedContent: function setEmbeddedContent() {
 
               this.observer.publish(
-                  this.eventmanager.eventList.getLocation
+                  this.eventManager.eventList.getLocation
               );
             },
 

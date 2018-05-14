@@ -36,7 +36,7 @@ defineP([
 
           /**
            * Define observer
-           * @type {Observer}
+           * @type {ObserverJs}
            */
           var observer = this.observer;
 
@@ -51,7 +51,7 @@ defineP([
            * Define event list
            * @type {Object}
            */
-          var eventList = this.eventmanager.eventList;
+          var eventList = this.eventManager.eventList;
 
           observer.batchPublish(
               eventList.loadPreferences,
@@ -100,7 +100,7 @@ defineP([
               this.logger.debug('Transfer event', event, params);
 
               this.observer.publish(
-                  this.eventmanager.eventList[event],
+                  this.eventManager.eventList[event],
                   params
               );
             }
@@ -120,13 +120,13 @@ defineP([
            */
           var widget = this.controller.getContainment();
 
-          if (!widget.eventmanager.eventList.hasOwnProperty(eventName)) {
+          if (!widget.eventManager.eventList.hasOwnProperty(eventName)) {
             this.logger.warn('Undefined event', eventName);
             return false;
           }
 
           widget.observer.publish(
-              widget.eventmanager.eventList[eventName]
+              widget.eventManager.eventList[eventName]
           );
         },
 
@@ -135,7 +135,7 @@ defineP([
          * @memberOf WidgetContentController
          */
         executeOnWidgetContentOnLoadEvent: function executeOnWidgetContentOnLoadEvent() {
-          this.eventmanager.executeEventsOnLoad();
+          this.eventManager.executeEventsOnLoad();
         },
 
         /**
@@ -153,7 +153,7 @@ defineP([
 
           // Transfer prefs to widget
           this.observer.publish(
-              this.eventmanager.eventList.transferContentPreferences,
+              this.eventManager.eventList.transferContentPreferences,
               [key, value]
           );
 
@@ -177,7 +177,7 @@ defineP([
             if (prefs.hasOwnProperty(index)) {
 
               this.observer.publish(
-                  this.eventmanager.eventList.alternativeSavePreferences, [
+                  this.eventManager.eventList.alternativeSavePreferences, [
                     index,
                     prefs[index].value,
                     false
@@ -237,7 +237,7 @@ defineP([
           var widget = this.getContainment();
 
           widget.observer.publish(
-              widget.eventmanager.eventList.clearThumbnail
+              widget.eventManager.eventList.clearThumbnail
           );
         },
 
@@ -381,12 +381,12 @@ defineP([
 
           /**
            * Define uuid
-           * @type {String}
+           * @type {string}
            */
           var uuid = widget.model.getUUID();
 
           this.observer.publish(
-              this.eventmanager.eventList.transferStatistics,
+              this.eventManager.eventList.transferStatistics,
               [uuid, e.target]
           );
         },
@@ -422,7 +422,7 @@ defineP([
           // mimicry); return false; }
 
           this.observer.publish(
-              this.eventmanager.eventList.setEmbeddedContent
+              this.eventManager.eventList.setEmbeddedContent
           );
         },
 

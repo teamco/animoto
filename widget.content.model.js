@@ -203,7 +203,7 @@ defineP([], function defineWidgetContentModel() {
           widget.model._setItemInfoPreferences('metamorphicType', type);
 
       scope.observer.publish(
-          scope.eventmanager.eventList.fetchMetamorphicPreferences,
+          scope.eventManager.eventList.fetchMetamorphicPreferences,
           type
       );
     },

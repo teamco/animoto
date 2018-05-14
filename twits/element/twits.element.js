@@ -53,7 +53,7 @@ defineP([
 
       /**
        * Define uuid
-       * @type {String}
+       * @type {string}
        */
       var uuid = [
         this.base.lib.generator.UUID(),
