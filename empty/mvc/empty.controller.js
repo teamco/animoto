@@ -5,39 +5,53 @@
  * Time: 11:03 AM
  */
 
-defineP([
-  'plugins/plugin.controller',
-  'plugins/widgets/widget.content.controller'
-], function defineEmptyController(PluginBase, WidgetContentController) {
+/**
+ * @constant WidgetContentController
+ * @type {module.WidgetContentController|*}
+ */
+const WidgetContentController = require('../../widget.content.controller.js');
+
+/**
+ * @class EmptyController
+ * @extends WidgetContentController
+ */
+module.exports = class EmptyController extends WidgetContentController {
 
   /**
-   * Define Empty controller
-   * @class EmptyController
-   * @extends PluginController
-   * @extends WidgetContentController
+   * @param {string} [name]
+   * @param scope
    * @constructor
    */
-  var EmptyController = function EmptyController() {
-  };
+  constructor(name, scope) {
+    super(name || 'EmptyController', scope, false);
+  }
 
-  return EmptyController.extend('EmptyController', {
+  /**
+   * Set embedded content
+   * @memberOf EmptyController
+   */
+  setEmbeddedContent() {
+    this.view.get$item().renderEmbeddedContent();
+  }
+
+  /**
+   * @memberOf EmptyController
+   * @param {Event} e
+   */
+  addContentRule(e) {
 
     /**
-     * Set embedded content
-     * @memberOf EmptyController
+     * Define $button
+     * @type {*|jQuery|HTMLElement}
      */
-    setEmbeddedContent: function setEmbeddedContent() {
-      this.view.get$item().renderEmbeddedContent();
-    },
+    const $button = $(e.target);
 
     /**
-     * Add Empty rule
-     * @memberOf EmptyController
-     * @param {Event} e
+     * Get page tab
+     * @type {Empty}
      */
-    addEmptyRule: function addEmptyRule(e) {
-      this.addWidgetRule(e, this.scope.name);
-    }
+    const scope = this.scope;
 
-  }, PluginBase.prototype, WidgetContentController.prototype);
-});
+    scope.observer.publish(scope.eventManager.eventList.publishRule, [$button.attr('value'), scope.name]);
+  }
+};

@@ -6,18 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'plugins/widgets/widget.content.event.manager'
-], function definePageTabsEventManager(WidgetContentEventManager) {
+/**
+ * @constant EmptyEventManager
+ * @type {module.EmptyEventManager}
+ */
+const EmptyEventManager = require('../../empty/mvc/empty.event.manager.js');
+
+/**
+ * @class PageTabsEventManager
+ * @type {module.PageTabsEventManager}
+ */
+module.exports = class PageTabsEventManager extends EmptyEventManager {
 
   /**
-   * Define PageTabs event manager
-   * @class PageTabsEventManager
    * @constructor
-   * @extends BaseEvent
-   * @extends WidgetContentEventManager
+   * @param {string} name
+   * @param {PageTabs} scope
    */
-  var PageTabsEventManager = function PageTabsEventManager() {
+  constructor(name, scope) {
+    super(name || 'PageTabsEventManager', scope, false);
 
     this.updateEventList({
       switchToPage: 'switch.to.page',
@@ -31,14 +38,9 @@ defineP([
 
     /**
      * Define on load events
-     * @memberOf WidgetContentEventManager
+     * @property WidgetContentEventManager
      * @type {[string]}
      */
-    this.onLoadEvents = [
-      this.eventList.switchToPage
-    ];
-  };
-
-  return PageTabsEventManager.extend('PageTabsEventManager', {},
-      WidgetContentEventManager.prototype);
-});
+    this.onLoadEvents = [this.eventList.switchToPage];
+  }
+};

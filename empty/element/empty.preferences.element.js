@@ -5,36 +5,40 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/preferences/widget.preferences'
-], function defineEmptyPreferencesElement(PluginElement, WidgetPreferences) {
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../../../../core/lib/extends/aggregation.js');
+
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../../plugin.element.js');
+
+/**
+ * @constant WidgetPreferences
+ * @type {module.WidgetPreferences}
+ */
+const WidgetPreferences = require('../../../preferences/widget.preferences.js');
+
+/**
+ * @class EmptyPreferencesElement
+ * @extends {PluginElement, WidgetPreferences}
+ * @type {module.EmptyPreferencesElement}
+ */
+module.exports = class EmptyPreferencesElement extends aggregation(PluginElement, WidgetPreferences) {
 
   /**
-   * Define Empty Preferences Element
    * @constructor
-   * @class EmptyPreferencesElement
+   * @param {string} [name]
    * @param {EmptyView} view
    * @param opts
-   * @extends PluginElement
-   * @extends WidgetPreferences
-   * @returns {EmptyPreferencesElement}
    */
-  var EmptyPreferencesElement = function EmptyPreferencesElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+  constructor(name, view, opts) {
+    super(name || 'EmptyPreferencesElement', view, false);
+    this._config(view, opts, $('<div />')).build(opts);
     this.renderBasePrefsData(opts.data);
-
-    return this;
-  };
-
-  return EmptyPreferencesElement.extend(
-      'EmptyPreferencesElement', {},
-      PluginElement.prototype,
-      WidgetPreferences.prototype
-  );
-});
+  }
+};

@@ -2,59 +2,61 @@
  * Created by teamco on 4/30/14.
  */
 
-defineP([
-  'modules/Event'
-], function defineWidgetContentEventManager(BaseEvent) {
+/**
+ * @constant BaseEvent
+ * @type {BaseEvent}
+ */
+const BaseEvent = require('../../core/lib/modules/Event.js');
+
+/**
+ * @class WidgetContentEventManager
+ * @extends BaseEvent
+ */
+module.exports = class WidgetContentEventManager extends BaseEvent {
 
   /**
-   * Define Widget Content EventManager
-   * @class WidgetContentEventManager
-   * @extends BaseEvent
    * @constructor
+   * @param {string} name
+   * @param {Page} scope
    */
-  var WidgetContentEventManager = function WidgetContentEventManager() {
-  };
-
-  return WidgetContentEventManager.extend('WidgetContentEventManager', {
+  constructor(name, scope) {
+    super(name || 'WidgetContentEventManager', scope, false);
 
     /**
-     * Define events
      * @property WidgetContentEventManager
-     * @type {{}}
      */
-    events: {},
+    this.events = {};
 
     /**
-     * Define on load events
      * @property WidgetContentEventManager
      * @type {Array}
      */
-    onLoadEvents: [],
+    this.onLoadEvents = [];
 
     /**
      * Define event list
      * @property WidgetContentEventManager
      * @type {{
-         *      initWidget: string,
-         *      updateTranslations: string,
-         *      defineContainer: string,
-         *      defineReferrer: string,
-         *      setEmbeddedContent: string,
-         *      analyzeEmbeddedContent: string,
-         *      loadPreferences: string,
-         *      transferContentPreferences: string,
-         *      alternativeSavePreferences: string,
-         *      loadRules: string,
-         *      publishRule: string,
-         *      registerRules: string,
-         *      transferRules: string,
-         *      transferEvents: string,
-         *      executeOnWidgetEvent: string,
-         *      executeOnWidgetContentOnLoadEvent: string,
-         *      fetchMetamorphicPreferences: string
-         * }}
+     *  initWidget: string,
+     *  updateTranslations: string,
+     *  defineContainer: string,
+     *  defineReferrer: string,
+     *  setEmbeddedContent: string,
+     *  analyzeEmbeddedContent: string,
+     *  loadPreferences: string,
+     *  transferContentPreferences: string,
+     *  alternativeSavePreferences: string,
+     *  loadRules: string,
+     *  publishRule: string,
+     *  registerRules: string,
+     *  transferRules: string,
+     *  transferEvents: string,
+     *  executeOnWidgetEvent: string,
+     *  executeOnWidgetContentOnLoadEvent: string,
+     *  fetchMetamorphicPreferences: string
+     * }}
      */
-    eventList: {
+    this.eventList = {
       initWidget: 'init.widget',
       updateTranslations: 'update.translations',
       defineContainer: 'define.container',
@@ -73,64 +75,55 @@ defineP([
       executeOnWidgetEvent: 'execute.on.widget.event',
       executeOnWidgetContentOnLoadEvent: 'execute.on.widget.content.on.load.event',
       fetchMetamorphicPreferences: 'fetch.metamorphic.preferences'
-    },
+    };
+  }
 
-    /**
-     * Update event list
-     * @memberOf WidgetContentEventManager
-     * @param events
-     */
-    updateEventList: function updateEventList(events) {
-      $.extend(this.eventList, events);
-    },
+  /**
+   * Update event list
+   * @memberOf WidgetContentEventManager
+   * @param events
+   */
+  updateEventList(events) {
+    $.extend(this.eventList, events);
+  }
 
-    /**
-     * Execute events on load
-     * @memberOf WidgetContentEventManager
-     */
-    executeEventsOnLoad: function executeEventsOnLoad() {
-
-      if (this.onLoadEvents.length === 0) {
-        return false;
-      }
-
-      /**
-       * Define scope
-       * @type {*}
-       */
-      var scope = this.scope;
-
-      /**
-       * Get widget
-       * @type {Widget}
-       */
-      var widget = scope.controller.getContainment();
-
-      var rules = widget.model.getConfig('rules'),
-          publish = rules.publish || {},
-          subscribe = rules.subscribe || {},
-          lname = scope.name.toLowerCase(),
-          event;
-
-      publish[lname] = scope.base.define(publish[lname], [], true);
-
-      for (var i = 0, l = this.onLoadEvents.length; i < l; i++) {
-
-        event = this.onLoadEvents[i];
-
-        if (!publish[lname].join(':').match(new RegExp(event, 'gi'))) {
-
-          publish[lname].push(event);
-
-          scope.observer.publish(
-              scope.eventManager.eventList.transferRules, {
-                publish: publish,
-                subscribe: subscribe
-              }
-          );
-        }
-      }
+  /**
+   * Execute events on load
+   * @memberOf WidgetContentEventManager
+   */
+  executeEventsOnLoad() {
+    if (this.onLoadEvents.length === 0) {
+      return false;
     }
 
-  }, BaseEvent.prototype);
-});
+    /**
+     * Define scope
+     * @type {*}
+     */
+    const scope = this.scope;
+
+    /**
+     * Get widget
+     * @type {Widget}
+     */
+    const widget = scope.controller.getContainment();
+
+    const rules = widget.model.getConfig('rules'),
+        publish = rules.publish || {},
+        subscribe = rules.subscribe || {},
+        name = scope.name.toLowerCase();
+
+    publish[name] = scope.base.define(publish[name], [], true);
+
+    for (let i = 0, l = this.onLoadEvents.length; i < l; i++) {
+      const event = this.onLoadEvents[i];
+      if (!publish[name].join(':').match(new RegExp(event, 'gi'))) {
+        publish[name].push(event);
+        scope.observer.publish(scope.eventManager.eventList.transferRules, {
+          publish: publish,
+          subscribe: subscribe
+        });
+      }
+    }
+  }
+};

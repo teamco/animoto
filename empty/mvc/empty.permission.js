@@ -6,21 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineEmptyPermission(BasePermission) {
+/**
+ * @constant BasePermission
+ * @type {module.BasePermission}
+ */
+const BasePermission = require('../../../../core/lib/modules/Permission.js');
+
+/**
+ * @extends BasePermission
+ * @class EmptyPermission
+ */
+module.exports = class EmptyPermission extends BasePermission {
 
   /**
-   * Define Permissions
-   * @class EmptyPermission
    * @constructor
-   * @extends BasePermission
+   * @param {string} [name]
+   * @param scope
    */
-  var EmptyPermission = function EmptyPermission() {
-  };
-
-  return EmptyPermission.extend(
-      'EmptyPermission', {},
-      BasePermission.prototype
-  );
-});
+  constructor(name, scope) {
+    super(name || 'EmptyPermission', scope, false);
+  }
+};

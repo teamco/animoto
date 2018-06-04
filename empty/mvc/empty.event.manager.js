@@ -6,24 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'plugins/widgets/widget.content.event.manager'
-], function defineEmptyEventManager(WidgetContentEventManager) {
+/**
+ * @constant WidgetContentEventManager
+ * @type {module.WidgetContentEventManager|*}
+ */
+const WidgetContentEventManager = require('../../widget.content.event.manager.js');
+
+/**
+ * @class EmptyEventManager
+ * @type {module.EmptyEventManager}
+ */
+module.exports = class EmptyEventManager extends WidgetContentEventManager {
 
   /**
-   * Define Empty event manager
-   * @class EmptyEventManager
    * @constructor
-   * @extends BaseEvent
-   * @extends WidgetContentEventManager
+   * @param {string} name
+   * @param {Empty} scope
    */
-  var EmptyEventManager = function EmptyEventManager() {
-
+  constructor(name, scope) {
+    super(name || 'EmptyEventManager', scope, false);
     this.updateEventList({});
-  };
-
-  return EmptyEventManager.extend(
-      'EmptyEventManager', {},
-      WidgetContentEventManager.prototype
-  );
-});
+  }
+};

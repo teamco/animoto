@@ -5,40 +5,38 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-defineP([
-  'modules/Model',
-  'plugins/widgets/widget.content.model'
-], function defineEmptyModel(BaseModel, WidgetContentModel) {
+
+/**
+ * @constant WidgetContentModel
+ * @type {module.WidgetContentModel}
+ */
+const WidgetContentModel = require('../../widget.content.model.js');
+
+/**
+ * @class EmptyModel
+ * @extends WidgetContentModel
+ * @type {module.EmptyModel}
+ */
+module.exports = class EmptyModel extends WidgetContentModel {
 
   /**
-   * Define Empty model
-   * @extends BaseModel
-   * @extends WidgetContentModel
-   * @class EmptyModel
    * @constructor
+   * @param {string} name
+   * @param scope
    */
-  var EmptyModel = function EmptyModel() {
+  constructor(name, scope) {
+    super(name || 'EmptyModel', scope, false);
 
     /**
      * Define preferences
      * @property EmptyModel
-     * @type {{}}
      */
-    this.preferences = {
-      // Preferences
-    };
+    this.preferences = {};
 
     /**
      * Define rules
      * @property EmptyModel
-     * @type {{}}
      */
     this.rules = {};
-  };
-
-  return EmptyModel.extend('EmptyModel', {
-
-    // Setter
-
-  }, BaseModel.prototype, WidgetContentModel.prototype);
-});
+  }
+};

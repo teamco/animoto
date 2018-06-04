@@ -6,129 +6,90 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/header.element',
-  'element/footer.element',
-  'plugins/widgets/page.tabs/element/page.tabs.element',
-  'plugins/widgets/page.tabs/element/page.tabs.preferences.element',
-  'plugins/widgets/page.tabs/element/page.tabs.rules.element',
-  'plugins/widgets/page.tabs/element/page.tabs.item.element'
-], function definePageTabsView(BaseView, Header, Footer, PageTabsElement,
-    PageTabsPreferencesElement, PageTabsRulesElement, PageTabsItemElement) {
+/**
+ * @constant EmptyView
+ * @type {module.EmptyView}
+ */
+const EmptyView = require('../../empty/mvc/empty.view.js');
+
+/**
+ * @constant ContentElement
+ * @type {module.PageTabsElement}
+ */
+const ContentElement = require('../element/page.tabs.element.js');
+
+/**
+ * @constant PreferencesElement
+ * @type {module.PageTabsPreferencesElement}
+ */
+const PreferencesElement = require('../element/page.tabs.preferences.element.js');
+
+/**
+ * @constant RulesElement
+ * @type {module.PageTabsRulesElement}
+ */
+const RulesElement = require('../element/page.tabs.rules.element.js');
+
+/**
+ * @constant ItemElement
+ * @type {module.PageTabsItemElement}
+ */
+const ItemElement = require('../element/page.tabs.item.element.js');
+
+/**
+ * @class PageTabsView
+ * @extends EmptyView
+ * @type {module.PageTabsView}
+ */
+module.exports = class PageTabsView extends EmptyView {
 
   /**
-   * Define view
-   * @class PageTabsView
-   * @extends BaseView
    * @constructor
+   * @param {string} name
+   * @param scope
    */
-  var PageTabsView = function PageTabsView() {
-  };
+  constructor(name, scope) {
+    super(name || 'PageTabsView', scope, false);
+  }
 
-  return PageTabsView.extend('PageTabsView', {
-
-    /**
-     * Render page.tabs element
-     * @memberOf PageTabsView
-     */
-    renderPageTabs: function renderPageTabs() {
-
-      this.header(Header, this.get$container());
-
-      /**
-       * Define $page.tabs
-       * @type {PageTabsElement}
-       */
-      this.elements.$pagetabs = new PageTabsElement(this, {
-        $container: this.get$container().$,
-        style: 'page-tabs-container'
-      });
-
-      this.footer(Footer, this.get$container());
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.analyzeEmbeddedContent
-      );
-    },
+  /**
+   * Render page tab element
+   * @memberOf PageTabsView
+   * @param {Page} pageTab
+   * @return {PageTabsItemElement}
+   */
+  renderPageTabsItem(pageTab) {
 
     /**
-     * Render page tab element
-     * @memberOf PageTabsView
-     * @param {Page} pageTab
-     * @return {PageTabsItemElement}
+     * Define page tab item
+     * @type {PageTabsItemElement}
+     * @return {jQuery}
      */
-    renderPageTabsItem: function renderPageTabsItem(pageTab) {
+    const $pageTab = new this.fetchElement('Item')(this, {
+      $container: this.get$item().$,
+      pageTab: pageTab,
+      style: 'page-tabs-item'
+    });
 
-      /**
-       * Define page tab item
-       * @type {PageTabsItemElement}
-       * @return {jQuery}
-       */
-      var $pageTab = new PageTabsItemElement(this, {
-        $container: this.get$item().$,
-        pageTab: pageTab,
-        style: 'page-tabs-item'
-      });
+    this.elements.items[$pageTab.id] = $pageTab;
 
-      this.elements.items[$pageTab.id] = $pageTab;
+    return $pageTab.$;
+  }
 
-      return $pageTab.$;
-    },
-
-    /**
-     * Render Prefs
-     * @memberOf PageTabsView
-     * @returns {PageTabsPreferencesElement}
-     */
-    renderPreferences: function renderPreferences() {
-
-      /**
-       * Define PageTabs Preferences Element
-       * @type {PageTabsPreferencesElement}
-       */
-      this.elements.$preferences = new PageTabsPreferencesElement(this, {
-        data: this.controller.getPreferences()
-      });
-
-      return this.get$preferences();
-    },
-
-    /**
-     * Render Rules
-     * @memberOf PageTabsView
-     * @param widgetRules
-     * @param contentRules
-     * @returns {PageTabsRulesElement}
-     */
-    renderRules: function renderRules(widgetRules, contentRules) {
-
-      /**
-       * Define PageTabs Rules Element
-       * @type {PageTabsRulesElement}
-       */
-      this.elements.$rules = new PageTabsRulesElement(this, {
-        data: this.controller.getRules(),
-        rules: {
-          widget: widgetRules,
-          content: contentRules
-        }
-      });
-
-      return this.get$rules();
-    },
-
-    /**
-     * Render page.tabs
-     * @memberOf PageTabsView
-     */
-    render: function render() {
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          this.renderPageTabs.bind(this)
-      );
+  /**
+   * @memberOf PageTabsView
+   * @return {{
+   *  Content: module.PageTabsElement,
+   *  Preferences: module.PageTabsPreferencesElement,
+   *  Rules: module.PageTabsRulesElement
+   * }}
+   */
+  static getElements() {
+    return {
+      Content: ContentElement,
+      Preferences: PreferencesElement,
+      Rules: RulesElement,
+      Item: ItemElement
     }
-
-  }, BaseView.prototype)
-});
+  }
+};

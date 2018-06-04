@@ -5,40 +5,40 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/rules/widget/widget.base.rules'
-], function defineEmptyRulesElement(PluginElement, BaseWidgetRules) {
+/**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../../../../core/lib/extends/aggregation.js');
+
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../../plugin.element.js');
+
+/**
+ * @constant BaseWidgetRules
+ * @type {module.BaseWidgetRules}
+ */
+const BaseWidgetRules = require('../../../rules/widget/widget.base.rules.js');
+
+/**
+ * @class EmptyRulesElement
+ * @extends {PluginElement, BaseWidgetRules}
+ * @type {module.EmptyRulesElement}
+ */
+module.exports = class EmptyRulesElement extends aggregation(PluginElement, BaseWidgetRules) {
 
   /**
-   * Define Empty Rules Element
-   * @param view
-   * @param opts
-   * @returns {EmptyRulesElement}
    * @constructor
-   * @class EmptyRulesElement
-   * @extends PluginElement
-   * @extends BaseWidgetRules
+   * @param {string} [name]
+   * @param {EmptyView} view
+   * @param opts
    */
-  var EmptyRulesElement = function EmptyRulesElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    this.renderBaseRulesData(
-        opts.data,
-        opts.rules.widget,
-        opts.rules.content
-    );
-
-    return this;
-  };
-
-  return EmptyRulesElement.extend(
-      'EmptyRulesElement', {},
-      PluginElement.prototype,
-      BaseWidgetRules.prototype
-  );
-});
+  constructor(name, view, opts) {
+    super(name || 'EmptyRulesElement', view, false);
+    this._config(view, opts, $('<div />')).build(opts);
+    this.renderBaseRulesData(opts.data, opts.rules.widget, opts.rules.content);
+  }
+};

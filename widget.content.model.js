@@ -5,250 +5,214 @@
  * Time: 1:09 AM
  */
 
-defineP([], function defineWidgetContentModel() {
+/**
+ * @constant BaseModel
+ * @type {module.BaseModel}
+ */
+const BaseModel = require('../../core/lib/modules/Model.js');
+
+/**
+ * @constant WidgetContentModel
+ * @type {module.WidgetContentModel}
+ * @extends BaseModel
+ */
+module.exports = class WidgetContentModel extends BaseModel {
 
   /**
-   * Define Widget content model
-   * @class WidgetContentModel
+   * @param {string} [name]
+   * @param scope
    * @constructor
-   * @extends AntHill
    */
-  var WidgetContentModel = function WidgetContentModel() {
+  constructor(name, scope) {
+    super(name || 'WidgetContentModel', scope, false);
+  }
+
+  /**
+   * Get prefs
+   * @memberOf WidgetContentModel
+   * @param {string} prefs
+   * @returns {boolean|string}
+   */
+  getContentPrefs(prefs) {
+    const contentPrefs = this.getAllContentPrefs();
+    if (contentPrefs[prefs]) {
+      return contentPrefs[prefs].value;
+    }
+    this.scope.logger.info('Undefined preference', prefs);
+  }
+
+  /**
+   * Get all content preferences
+   * @memberOf WidgetContentModel
+   * @returns {*}
+   */
+  getAllContentPrefs() {
+    return this.preferences;
+  }
+
+  /**
+   * Get prefs
+   * @memberOf WidgetContentModel
+   * @param {string} prefs
+   * @returns {*}
+   */
+  getPrefs(prefs) {
+    if (this.preferences) {
+      return this.getContentPrefs(prefs);
+    }
 
     /**
      * Define prefs
-     * @property WidgetContentModel
-     * @type {undefined}
+     * @type {{}}
      */
-    this.preferences = undefined;
+    const preferences = this.scope.config.preferences;
 
-    /**
-     * Define scope
-     * @property WidgetContentModel
-     * @type {undefined}
-     */
-    this.scope = undefined;
-  };
-
-  return WidgetContentModel.extend('WidgetContentModel', {
-
-    /**
-     * Get prefs
-     * @memberOf WidgetContentModel
-     * @param {string} prefs
-     * @returns {boolean|string}
-     */
-    getContentPrefs: function getContentPrefs(prefs) {
-
-      if (!this.preferences[prefs]) {
-        this.scope.logger.info('Undefined preference', prefs);
-        return false;
-      }
-
-      return this.preferences[prefs].value;
-    },
-
-    /**
-     * Get all content preferences
-     * @memberOf WidgetContentModel
-     * @returns {*}
-     */
-    getAllContentPrefs: function getAllContentPrefs() {
-      return this.preferences;
-    },
-
-    /**
-     * Get prefs
-     * @memberOf WidgetContentModel
-     * @param {string} prefs
-     * @returns {*}
-     */
-    getPrefs: function getPrefs(prefs) {
-
-      if (this.base.isDefined(this.preferences)) {
-        return this.getContentPrefs(prefs);
-      }
-
-      /**
-       * Define prefs
-       * @type {{}}
-       */
-      var preferences = this.scope.config.preferences;
-
-      if (!preferences) {
-        this.scope.logger.warn('Unable to locate preference', prefs);
-        return false;
-      }
-
+    if (preferences) {
       return preferences[prefs];
-    },
+    }
+    this.scope.logger.warn('Unable to locate preference', prefs);
+  }
+
+  /**
+   * Set prefs
+   * @memberOf WidgetContentModel
+   * @param {string} prefs
+   * @param {*} value
+   */
+  setPrefs(prefs, value) {
 
     /**
-     * Set prefs
-     * @memberOf WidgetContentModel
-     * @param {string} prefs
-     * @param {*} value
+     * Define preferences
+     * @property WidgetContentModel
+     * @type {*}
      */
-    setPrefs: function setPrefs(prefs, value) {
-
-      /**
-       * Define preferences
-       * @memberOf WidgetContentModel
-       * @type {*}
-       */
-      this.preferences = this.base.define(
-          this.preferences, {}, true
-      );
-
-      /**
-       * Define new prefs
-       * @type {*}
-       */
-      this.preferences[prefs] = this.base.define(
-          this.preferences[prefs], {}, true
-      );
-
-      /**
-       * Define prefs
-       * @type {string}
-       */
-      this.preferences[prefs].value = value;
-    },
+    this.preferences = this.preferences || {};
 
     /**
-     * Set prefs
-     * @memberOf WidgetContentModel
-     * @param prefs
-     * @param value
+     * Define new prefs
+     * @type {*}
      */
-    setPrefsCache: function setPrefsCache(prefs, value) {
-
-      if (this.getPrefs(prefs) !== value) {
-
-        this.setPrefs(prefs, value);
-      }
-    },
+    this.preferences[prefs] = this.preferences[prefs] || {};
 
     /**
-     * Copy prefs
-     * @memberOf WidgetContentModel
-     * @param source
-     * @returns {boolean}
+     * Define prefs
+     * @type {string}
      */
-    copyPrefs: function copyPrefs(source) {
+    this.preferences[prefs].value = value;
+  }
 
-      /**
-       * Define
-       * @type {string}
-       */
-      var cname = this.scope.name.toLowerCase(),
-          prefs = source.model.preferences;
+  /**
+   * Set prefs
+   * @memberOf WidgetContentModel
+   * @param prefs
+   * @param value
+   */
+  setPrefsCache(prefs, value) {
+    if (this.getPrefs(prefs) !== value) {
+      this.setPrefs(prefs, value);
+    }
+  }
 
-      if (source.name.toLowerCase() !== cname) {
-        this.scope.logger.warn('Unable to copy preferences', source);
-        return false;
-      }
-
-      for (var index in prefs) {
-
-        if (prefs.hasOwnProperty(index)) {
-
-          if (index.match(new RegExp(cname))) {
-
-            this.setPrefs(index, prefs[index].value);
-            this.scope.logger.debug(
-                'Copied prefs', source, index, prefs[index]
-            );
-          }
-        }
-      }
-    },
+  /**
+   * Copy prefs
+   * @memberOf WidgetContentModel
+   * @param source
+   * @returns {boolean}
+   */
+  copyPrefs(source) {
 
     /**
-     * Define type setter
-     * @memberOf WidgetContentModel
-     * @param {string} type
+     * Define
+     * @type {string}
      */
-    setMetamorphicType: function setMetamorphicType(type) {
+    const cname = this.scope.name.toLowerCase(),
+        prefs = source.model.preferences;
 
-      /**
-       * Get scope
-       * @type {WidgetContent|{name}}
-       */
-      var scope = this.scope;
+    if (source.name.toLowerCase() !== cname) {
+      this.scope.logger.warn('Unable to copy preferences', source);
+      return false;
+    }
 
-      var isMetamorphic = true,
-          widget = scope.controller.getContainment();
-
-      if (!widget.model.getConfig(
-              'preferences').metamorphicAllowChangeContent) {
-
-        scope.logger.debug('Metamorphic not allowed', type);
-
-        // Reset content
-        widget.controller.fetchInternalContent('metamorphic');
-
-        // Remove metamorphicType
-        delete widget.config.preferences.metamorphicType;
-
-        return false;
-      }
-
-      if (scope.name.toLowerCase() !== 'metamorphic') {
-        isMetamorphic = scope.view.get$container().isMetamorphicElement();
-      }
-
-      isMetamorphic ?
-          this.setPrefs('metamorphicType', type) :
-          widget.model._setItemInfoPreferences('metamorphicType', type);
-
-      scope.observer.publish(
-          scope.eventManager.eventList.fetchMetamorphicPreferences,
-          type
-      );
-    },
-
-    /**
-     * Get Metamorphic Preferences
-     * @memberOf WidgetContentModel
-     * @param {boolean} force
-     * @returns {{}}
-     */
-    getMetamorphicPreferences: function getMetamorphicPreferences(force) {
-
-      var allowed = false, type;
-
-      if (force) {
-
-        /**
-         * Get widget
-         * @type {Widget}
-         */
-        var widget = this.scope.controller.getContainment();
-
-        // Get prefs
-        var prefs = widget.model.getConfig('preferences');
-
-        allowed = prefs.metamorphicAllowChangeContent;
-        type = prefs.metamorphicType;
-      }
-
-      return {
-        metamorphicAllowChangeContent: {
-          type: 'checkbox',
-          disabled: false,
-          value: allowed,
-          visible: true
-        },
-        metamorphicType: {
-          type: 'listbox',
-          disabled: false,
-          list: [],
-          visible: true,
-          label: true,
-          value: type
-        }
+    for (let index in prefs) {
+      if (prefs.hasOwnProperty(index) && index.match(new RegExp(cname))) {
+        this.setPrefs(index, prefs[index].value);
+        this.scope.logger.debug('Copied prefs', source, index, prefs[index]);
       }
     }
-  });
-});
+  }
+
+  /**
+   * Define type setter
+   * @memberOf WidgetContentModel
+   * @param {string} type
+   */
+  setMetamorphicType(type) {
+    const scope = this.scope,
+        widget = scope.controller.getContainment();
+
+    let isMetamorphic = true;
+
+    if (!widget.model.getConfig('preferences').metamorphicAllowChangeContent) {
+      scope.logger.debug('Metamorphic not allowed', type);
+
+      // Reset content
+      widget.controller.fetchInternalContent('metamorphic');
+
+      // Remove metamorphicType
+      delete widget.config.preferences.metamorphicType;
+      return false;
+    }
+
+    if (scope.name.toLowerCase() !== 'metamorphic') {
+      isMetamorphic = scope.view.get$container().isMetamorphicElement();
+    }
+
+    isMetamorphic ?
+        this.setPrefs('metamorphicType', type) :
+        widget.model._setItemInfoPreferences('metamorphicType', type);
+
+    scope.observer.publish(scope.eventManager.eventList.fetchMetamorphicPreferences, type);
+  }
+
+  /**
+   * Get Metamorphic Preferences
+   * @memberOf WidgetContentModel
+   * @param {boolean} force
+   * @returns {{}}
+   */
+  getMetamorphicPreferences(force) {
+    let allowed = false, type;
+
+    if (force) {
+
+      /**
+       * Get widget
+       * @type {Widget}
+       */
+      const widget = this.scope.controller.getContainment();
+
+      // Get prefs
+      const prefs = widget.model.getConfig('preferences');
+
+      allowed = prefs.metamorphicAllowChangeContent;
+      type = prefs.metamorphicType;
+    }
+
+    return {
+      metamorphicAllowChangeContent: {
+        type: 'checkbox',
+        disabled: false,
+        value: allowed,
+        visible: true
+      },
+      metamorphicType: {
+        type: 'listbox',
+        disabled: false,
+        list: [],
+        visible: true,
+        label: true,
+        value: type
+      }
+    };
+  }
+};

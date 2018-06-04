@@ -5,245 +5,166 @@
  * Time: 11:03 AM
  */
 
-defineP([
-  'plugins/plugin.controller',
-  'plugins/widgets/widget.content.controller'
-], function definePageTabsController(PluginBase, WidgetContentController) {
+/**
+ * @constant EmptyController
+ * @type {module.EmptyController|*}
+ */
+const EmptyController = require('../../empty/mvc/empty.controller.js');
+
+/**
+ * @class PageTabsController
+ * @extends EmptyController
+ */
+module.exports = class PageTabsController extends EmptyController {
 
   /**
-   * Define PageTabs controller
-   * @class PageTabsController
-   * @extends PluginController
-   * @extends WidgetContentController
+   * @param {string} [name]
+   * @param scope
    * @constructor
    */
-  var PageTabsController = function PageTabsController() {
+  constructor(name, scope) {
+    super(name || 'PageTabsController', scope, false);
+  }
 
-  };
-
-  return PageTabsController.extend('PageTabsController', {
-
-    /**
-     * Subscribe to change page title
-     * @memberOf PageTabsController
-     */
-    subscribeChangePageTitleEvent: function subscribeChangePageTitleEvent() {
-
-      /**
-       * Get workspace
-       * @type {Workspace}
-       */
-      var ws = this.controller.getWorkspace(),
-          pages = ws.model.getItems(),
-          index, page;
-
-      for (index in pages) {
-
-        if (pages.hasOwnProperty(index)) {
-
-          /**
-           * Get page
-           * @type {Page}
-           */
-          page = pages[index];
-
-          this.controller._subscribePageEventCallback.bind(this)(
-              'afterUpdatePreferences',
-              this.eventManager.eventList.setEmbeddedContent,
-              page
-          );
-        }
-      }
-    },
+  /**
+   * Subscribe to change page title
+   * @memberOf PageTabsController
+   */
+  subscribeChangePageTitleEvent() {
 
     /**
-     * Subscribe to after page ordering event
-     * @memberOf PageTabsController
+     * Get workspace
+     * @type {Workspace}
      */
-    subscribeOrderPagesEvent: function subscribeOrderPagesEvent() {
-      this.controller._subscribePageEventCallback.bind(this)(
-          'afterPageOrder',
-          this.eventManager.eventList.setEmbeddedContent,
-          this.controller.getWorkspace()
-      );
-    },
+    const ws = this.controller.getWorkspace();
+        const pages = ws.model.getItems();
 
-    /**
-     * Subscribe to after switch page event
-     * @memberOf PageTabsController
-     */
-    subscribeAfterSwitchPageEvent: function subscribeAfterSwitchPageEvent() {
-      this.controller._subscribePageEventCallback.bind(this)(
-          'afterSwitchToPage',
-          this.eventManager.eventList.setActivePageTab,
-          this.controller.getWorkspace()
-      );
-    },
-
-    /**
-     * Subscribe to create page event
-     * @memberOf PageTabsController
-     */
-    subscribeCreatePageEvent: function subscribeCreatePageEvent() {
-      this.controller._subscribePageEventCallback.bind(this)(
-          'afterCreateItem',
-          this.eventManager.eventList.setEmbeddedContent,
-          this.controller.getWorkspace()
-      );
-    },
-
-    /**
-     * Subscribe to destroy page event
-     * @memberOf PageTabsController
-     */
-    subscribeDestroyPageEvent: function subscribeDestroyPageEvent() {
-
-      this.controller._subscribePageEventCallback.bind(this)(
-          'afterDestroyItem',
-          this.eventManager.eventList.setEmbeddedContent,
-          this.controller.getWorkspace()
-      );
-
-      this.controller._subscribePageEventCallback.bind(this)(
-          'afterDestroyItems',
-          this.eventManager.eventList.setEmbeddedContent,
-          this.controller.getWorkspace()
-      );
-    },
-
-    /**
-     * Subscribe to create page event
-     * @memberOf PageTabsController
-     * @private
-     * @param {string} eventName
-     * @param {string} callbackEvent
-     * @param {Workspace|Page} scope
-     */
-    _subscribePageEventCallback: function _subscribePageEventCallback(eventName,
-        callbackEvent, scope) {
-
-      /**
-       * Get workspace
-       * @type {WorkspaceEventManager|PageEventManager}
-       */
-      var eventManager = scope.eventManager;
-
-      /**
-       * Get scope
-       * @type {PageTabs}
-       */
-      var pageTabs = this;
-
-      eventManager.subscribe({
-
-        event: {
-          eventName: eventManager.eventList[eventName]
-        },
-
-        callback: function _callbackSubscribePageEventCallback() {
-
-          pageTabs.observer.publish(callbackEvent);
-
-        }
-
-      }, false);
-    },
-
-    /**
-     * Set embedded content
-     * @memberOf PageTabsController
-     */
-    setEmbeddedContent: function setEmbeddedContent() {
-
-      /**
-       * Get workspace
-       * @type {Workspace}
-       */
-      var ws = this.controller.getWorkspace();
-
-      this.view.get$item().renderEmbeddedContent(
-          ws.model.getItems()
-      );
-
-      this.observer.publish(
-          this.eventManager.eventList.setActivePageTab
-      );
-    },
-
-    /**
-     * Set active tab
-     * @memberOf PageTabsController
-     */
-    setActivePageTab: function setActivePageTab() {
-      this.view.get$item().setPageTabAsCurrent(
-          this.controller.getPage()
-      );
-    },
-
-    /**
-     * Switch to page
-     * @memberOf PageTabsController
-     * @param {PageTabsItemElement} $page
-     * @param {Event} e
-     */
-    switchToPage: function switchToPage($page, e) {
-
-      if ($page.pageUrl) {
-
-        this.logger.debug('Open url', arguments);
-
-        this.observer.publish(
-            this.eventManager.eventList.openUrlOnEvent, [
-              $page.pageUrl,
-              true,
-              $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog
-            ]
-        );
-
-      } else {
+    for (let index in pages) {
+      if (pages.hasOwnProperty(index)) {
 
         /**
-         * Get workspace
-         * @type {Workspace}
+         * Get page
+         * @type {module.Page}
          */
-        var workspace = this.controller.getWorkspace();
+        const page = pages[index];
 
-        workspace.observer.publish(
-            workspace.eventManager.eventList.switchToPage, [
-              $page.pageTab,
-              this.model.getPrefs('pagetabsSwipe')
-            ]
-        );
-
-        // Reset event handler
-        this.openUrlEventHandler = 0;
+        this.controller._subscribePageEventCallback.call(this, 'afterUpdatePreferences',
+            this.eventManager.eventList.setEmbeddedContent, page);
       }
-    },
+    }
+  }
+
+  /**
+   * Subscribe to after page ordering event
+   * @memberOf PageTabsController
+   */
+  subscribeOrderPagesEvent() {
+    this.controller._subscribePageEventCallback.call(this, 'afterPageOrder',
+        this.eventManager.eventList.setEmbeddedContent, this.controller.getWorkspace());
+  }
+
+  /**
+   * Subscribe to after switch page event
+   * @memberOf PageTabsController
+   */
+  subscribeAfterSwitchPageEvent() {
+    this.controller._subscribePageEventCallback.call(this, 'afterSwitchToPage',
+        this.eventManager.eventList.setActivePageTab, this.controller.getWorkspace());
+  }
+
+  /**
+   * Subscribe to create page event
+   * @memberOf PageTabsController
+   */
+  subscribeCreatePageEvent() {
+    this.controller._subscribePageEventCallback.call(this, 'afterCreateItem',
+        this.eventManager.eventList.setEmbeddedContent, this.controller.getWorkspace());
+  }
+
+  /**
+   * Subscribe to destroy page event
+   * @memberOf PageTabsController
+   */
+  subscribeDestroyPageEvent() {
+    this.controller._subscribePageEventCallback.call(this, 'afterDestroyItem',
+        this.eventManager.eventList.setEmbeddedContent, this.controller.getWorkspace());
+
+    this.controller._subscribePageEventCallback.call(this, 'afterDestroyItems',
+        this.eventManager.eventList.setEmbeddedContent, this.controller.getWorkspace());
+  }
+
+  /**
+   * Subscribe to create page event
+   * @memberOf PageTabsController
+   * @private
+   * @param {string} eventName
+   * @param {string} callbackEvent
+   * @param {Workspace|Page} scope
+   */
+  _subscribePageEventCallback(eventName, callbackEvent, scope) {
 
     /**
-     * Add PageTabs rule
-     * @memberOf PageTabsController
-     * @param {Event} e
+     * Get workspace
+     * @type {WorkspaceEventManager|PageEventManager}
      */
-    addPageTabsRule: function addPageTabsRule(e) {
+    const eventManager = scope.eventManager;
+
+    eventManager.subscribe({
+      event: {name: eventManager.eventList[eventName]},
+      callback() {
+        this.observer.publish(callbackEvent);
+      }
+    }, false);
+  }
+
+  /**
+   * Set embedded content
+   * @memberOf PageTabsController
+   */
+  setEmbeddedContent() {
+
+    /**
+     * Get workspace
+     * @type {module.Workspace}
+     */
+    const ws = this.controller.getWorkspace();
+
+    this.view.get$item().renderEmbeddedContent(ws.model.getItems());
+    this.observer.publish(this.eventManager.eventList.setActivePageTab);
+  }
+
+  /**
+   * Set active tab
+   * @memberOf PageTabsController
+   */
+  setActivePageTab() {
+    this.view.get$item().setPageTabAsCurrent(this.controller.getPage());
+  }
+
+  /**
+   * Switch to page
+   * @memberOf PageTabsController
+   * @param {PageTabsItemElement} $page
+   * @param {Event} e
+   */
+  switchToPage($page, e) {
+    if ($page.pageUrl) {
+      this.logger.debug('Open url', arguments);
+      this.observer.publish(this.eventManager.eventList.openUrlOnEvent, [$page.pageUrl, true,
+            $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog]);
+    } else {
 
       /**
-       * Define $button
-       * @type {*|jQuery|HTMLElement}
+       * Get workspace
+       * @type {module.Workspace}
        */
-      var $button = $(e.target);
+      const workspace = this.controller.getWorkspace();
 
-      /**
-       * Get page tab
-       * @type {PageTabs}
-       */
-      var scope = this.scope;
+      workspace.observer.publish(workspace.eventManager.eventList.switchToPage, [$page.pageTab,
+            this.model.getPrefs('pagetabsSwipe')]);
 
-      scope.observer.publish(
-          scope.eventManager.eventList.publishRule,
-          [$button.attr('value'), this.scope.name]
-      );
+      // Reset event handler
+      this.openUrlEventHandler = 0;
     }
-
-  }, PluginBase.prototype, WidgetContentController.prototype);
-});
+  }
+};

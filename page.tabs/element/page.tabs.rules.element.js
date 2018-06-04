@@ -5,38 +5,26 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/rules/widget/widget.base.rules'
-], function definePageTabsRulesElement(PluginElement, BaseWidgetRules) {
+/**
+ * @constant EmptyRulesElement
+ * @type {module.EmptyRulesElement}
+ */
+const EmptyRulesElement = require('../../empty/element/empty.rules.element.js');
+
+/**
+ * @class PageTabsRulesElement
+ * @extends EmptyRulesElement
+ * @type {module.PageTabsRulesElement}
+ */
+module.exports = class PageTabsRulesElement extends EmptyRulesElement {
 
   /**
-   * Define PageTabs Rules Element
-   * @param view
-   * @param opts
-   * @returns {PageTabsRulesElement}
    * @constructor
-   * @class PageTabsRulesElement
-   * @extends PluginElement
-   * @extends BaseWidgetRules
+   * @param {string} [name]
+   * @param {PageTabsView} view
+   * @param opts
    */
-  var PageTabsRulesElement = function PageTabsRulesElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    this.renderBaseRulesData(
-        opts.data,
-        opts.rules.widget,
-        opts.rules.content
-    );
-
-    return this;
-  };
-
-  return PageTabsRulesElement.extend('PageTabsRulesElement', {},
-      PluginElement.prototype, BaseWidgetRules.prototype);
-
-});
+  constructor(name, view, opts) {
+    super(name || 'PageTabsRulesElement', view, opts);
+  }
+};

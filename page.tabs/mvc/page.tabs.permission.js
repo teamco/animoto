@@ -6,20 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function definePageTabsPermission(BasePermission) {
+/**
+ * @constant EmptyPermission
+ * @type {module.EmptyPermission|*}
+ */
+const EmptyPermission = require('../../empty/mvc/empty.permission.js');
+
+/**
+ * @class PageTabsPermission
+ * @type {module.PageTabsPermission}
+ */
+module.exports = class PageTabsPermission extends EmptyPermission {
 
   /**
-   * Define Permissions
-   * @class PageTabsPermission
    * @constructor
-   * @extends BasePermission
+   * @param {string} [name]
+   * @param scope
    */
-  var PageTabsPermission = function PageTabsPermission() {
-
-  };
-
-  return PageTabsPermission.extend('PageTabsPermission', {},
-      BasePermission.prototype);
-});
+  constructor(name, scope) {
+    super(name || 'PageTabsPermission', scope, false);
+  }
+};

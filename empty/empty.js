@@ -5,30 +5,37 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/widgets/empty/mvc/empty.controller',
-  'plugins/widgets/empty/mvc/empty.model',
-  'plugins/widgets/empty/mvc/empty.view',
-  'plugins/widgets/empty/mvc/empty.event.manager',
-  'plugins/widgets/empty/mvc/empty.permission'
-], function defineEmpty(AntHill, MVC, Controller, Model, View, EventManager,
-    Permission) {
+/**
+ * @constant AntHill
+ * @type {module.AntHill}
+ */
+const AntHill = require('../../../core/config/anthill.js');
+
+/**
+ * @constant MVC
+ * @type {module.MVC}
+ */
+const MVC = require('../../../core/lib/modules/MVC.js');
+
+/**
+ * @class Empty
+ * @extends AntHill
+ */
+module.exports = class Empty extends AntHill {
 
   /**
-   * Define Empty
-   * @param containment
-   * @param [opts]
+   * @param {string} name
+   * @param {module.Widget} containment
+   * @param opts
    * @constructor
-   * @class Empty
-   * @extends AntHill
    */
-  var Empty = function Empty(containment, opts) {
+  constructor(name, containment, opts) {
+    super(name || 'Empty', null, true);
 
     /**
      * Define containment
      * @property Empty
+     * @type {module.Widget}
      */
     this.containment = containment;
 
@@ -40,24 +47,18 @@ defineP([
     this.referrer = undefined;
 
     /**
-     * Define defaults
+     * @constant DEFAULTS
      * @type {{
-     *      plugin: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  plugin: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       html: {
         style: 'default',
@@ -72,32 +73,88 @@ defineP([
       }
     };
 
+    this.initContent(DEFAULTS, opts);
+  };
+
+  /**
+   * @memberOf Empty
+   * @param DEFAULTS
+   * @param opts
+   */
+  initContent(DEFAULTS, opts) {
+
     /**
-     * Define MVC
-     * @property Empty
-     * @type {MVCJs}
+     * @constant components
+     * @type {{Controller, Model, View, EventManager, Permission}}
      */
-    this.mvc = new MVC({
+    const components = Empty.fetchComponents();
+
+    /**
+     * @type {module.MVC}
+     */
+    new MVC({
       scope: this,
       config: [
         {uuid: this.containment.model.getContentUUID()},
         DEFAULTS
       ],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        components.Controller,
+        components.Model,
+        components.View,
+        components.EventManager,
+        components.Permission
       ],
       render: true
     });
 
-    this.observer.publish(
-        this.eventManager.eventList.initWidget,
-        opts
-    );
-  };
+    this.observer.publish(this.eventManager.eventList.initWidget, opts);
+  }
 
-  return Empty.extend('Empty', {}, AntHill.prototype);
-});
+  /**
+   * @method init
+   * @memberOf Empty
+   * @static
+   * @returns {*}
+   */
+  static fetchComponents() {
+
+    /**
+     * @constant EmptyController
+     * @type {module.EmptyController}
+     */
+    const EmptyController = require('./mvc/empty.controller.js');
+
+    /**
+     * @constant EmptyModel
+     * @type {module.EmptyModel}
+     */
+    const EmptyModel = require('./mvc/empty.model.js');
+
+    /**
+     * @constant EmptyView
+     * @type {module.EmptyView}
+     */
+    const EmptyView = require('./mvc/empty.view.js');
+
+    /**
+     * @constant EmptyEventManager
+     * @type {module.EmptyEventManager}
+     */
+    const EmptyEventManager = require('./mvc/empty.event.manager.js');
+
+    /**
+     * @constant EmptyPermission
+     * @type {module.EmptyPermission}
+     */
+    const EmptyPermission = require('./mvc/empty.permission.js');
+
+    return {
+      Controller: EmptyController,
+      Model: EmptyModel,
+      View: EmptyView,
+      EventManager: EmptyEventManager,
+      Permission: EmptyPermission
+    };
+  }
+};

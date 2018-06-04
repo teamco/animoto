@@ -5,40 +5,37 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element'
-], function defineEmptyElement(PluginElement) {
+/**
+ * @constant PluginElement
+ * @type {module.PluginElement}
+ */
+const PluginElement = require('../../../plugin.element.js');
+
+/**
+ * @class EmptyElement
+ * @extends PluginElement
+ * @type {module.EmptyElement}
+ */
+module.exports = class EmptyElement extends PluginElement {
 
   /**
-   * Define Empty Element
+   * @param {string} [name]
+   * @param {EmptyView} view
+   * @param opts
+   * @constructor
+   */
+  constructor(name, view, opts) {
+    super(name || 'EmptyElement', view, false);
+    this.configElement(view, opts)
+  }
+
+  /**
+   * @memberOf EmptyElement
    * @param view
    * @param opts
-   * @returns {EmptyElement}
-   * @constructor
-   * @class EmptyElement
-   * @extends PluginElement
    */
-  var EmptyElement = function EmptyElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
+  configElement(view, opts) {
+    this._config(view, opts, $('<content />')).build(opts);
     this.addCSS('empty', {resource: '/widgets'});
-
-    return this;
-  };
-
-  return EmptyElement.extend('EmptyElement', {
-
-    /**
-     * Render Embedded content
-     * @memberOf EmptyElement
-     */
-    renderEmbeddedContent: function renderEmbeddedContent() {
-      // TODO
-    }
-
-  }, PluginElement.prototype);
-});
+  }
+};

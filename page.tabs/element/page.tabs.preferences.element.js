@@ -5,35 +5,26 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/preferences/widget.preferences'
-], function definePageTabsPreferencesElement(PluginElement, WidgetPreferences) {
+/**
+ * @constant EmptyPreferencesElement
+ * @type {module.EmptyPreferencesElement}
+ */
+const EmptyPreferencesElement = require('../../empty/element/empty.preferences.element.js');
+
+/**
+ * @class PageTabsPreferencesElement
+ * @extends EmptyPreferencesElement
+ * @type {module.PageTabsPreferencesElement}
+ */
+module.exports = class PageTabsPreferencesElement extends EmptyPreferencesElement {
 
   /**
-   * Define PageTabs Preferences Element
-   * @param view
-   * @param opts
-   * @returns {PageTabsPreferencesElement}
    * @constructor
-   * @class PageTabsPreferencesElement
-   * @extends PluginElement
-   * @extends WidgetPreferences
+   * @param {string} [name]
+   * @param {PageTabsView} view
+   * @param opts
    */
-  var PageTabsPreferencesElement = function PageTabsPreferencesElement(view,
-      opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    this.renderBasePrefsData(opts.data);
-
-    return this;
-  };
-
-  return PageTabsPreferencesElement.extend('PageTabsPreferencesElement', {},
-      PluginElement.prototype, WidgetPreferences.prototype);
-
-});
+  constructor(name, view, opts) {
+    super(name || 'PageTabsPreferencesElement', view, opts);
+  }
+};
