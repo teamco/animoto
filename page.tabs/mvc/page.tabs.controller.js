@@ -34,10 +34,10 @@ module.exports = class PageTabsController extends EmptyController {
 
     /**
      * Get workspace
-     * @type {Workspace}
+     * @type {module.Workspace}
      */
     const ws = this.controller.getWorkspace();
-        const pages = ws.model.getItems();
+    const pages = ws.model.getItems();
 
     for (let index in pages) {
       if (pages.hasOwnProperty(index)) {
@@ -105,14 +105,20 @@ module.exports = class PageTabsController extends EmptyController {
 
     /**
      * Get workspace
-     * @type {WorkspaceEventManager|PageEventManager}
+     * @type {module.WorkspaceEventManager|{subscribe, eventList}}
      */
     const eventManager = scope.eventManager;
+
+    /**
+     * @constant pageTabs
+     * @type {module.PageTabsController|{observer}}
+     */
+    const pageTabs = this;
 
     eventManager.subscribe({
       event: {name: eventManager.eventList[eventName]},
       callback() {
-        this.observer.publish(callbackEvent);
+        pageTabs.observer.publish(callbackEvent);
       }
     }, false);
   }
@@ -138,7 +144,17 @@ module.exports = class PageTabsController extends EmptyController {
    * @memberOf PageTabsController
    */
   setActivePageTab() {
-    this.view.get$item().setPageTabAsCurrent(this.controller.getPage());
+
+    /**
+     * @constant page
+     * @type {module.Page|{}}
+     */
+    const page = this.controller.getPage();
+    this.utils.waitFor(
+        () => this.view.get$item(),
+        () => this.view.get$item().setPageTabAsCurrent(page),
+        () => this.logger.warn('Timeout. Unable to embed content')
+    );
   }
 
   /**
@@ -150,8 +166,9 @@ module.exports = class PageTabsController extends EmptyController {
   switchToPage($page, e) {
     if ($page.pageUrl) {
       this.logger.debug('Open url', arguments);
-      this.observer.publish(this.eventManager.eventList.openUrlOnEvent, [$page.pageUrl, true,
-            $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog]);
+      this.observer.publish(this.eventManager.eventList.openUrlOnEvent, [
+        $page.pageUrl, true,
+        $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog]);
     } else {
 
       /**
@@ -160,8 +177,9 @@ module.exports = class PageTabsController extends EmptyController {
        */
       const workspace = this.controller.getWorkspace();
 
-      workspace.observer.publish(workspace.eventManager.eventList.switchToPage, [$page.pageTab,
-            this.model.getPrefs('pagetabsSwipe')]);
+      workspace.observer.publish(workspace.eventManager.eventList.switchToPage, [
+        $page.pageTab,
+        this.model.getPrefs('pagetabsSwipe')]);
 
       // Reset event handler
       this.openUrlEventHandler = 0;

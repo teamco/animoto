@@ -58,10 +58,20 @@ module.exports = class EmptyView extends BaseView {
     const name = this.scope.name;
 
     /**
+     * @constant $content
+     * @type {string}
+     */
+    const $content = '$' + name.toLowerCase();
+
+    if (this.isCached($content, this.constructor.getElements()['Content'])) {
+      return false;
+    }
+
+    /**
      * Define $empty
      * @type {module.EmptyElement}
      */
-    this.elements['$' + name.toLowerCase()] = new this.fetchElement('Content')(null, this, {
+    this.elements[$content] = this.fetchElement('Content', {
       $container: this.get$container().$,
       style: name.toDash() + '-container'
     });
@@ -81,7 +91,7 @@ module.exports = class EmptyView extends BaseView {
      * Define Empty Preferences Element
      * @type {module.EmptyPreferencesElement}
      */
-    this.elements.$preferences = new this.fetchElement('Preferences')(null, this, {
+    this.elements.$preferences = this.fetchElement('Preferences', {
       data: this.controller.getPreferences()
     });
 
@@ -101,7 +111,7 @@ module.exports = class EmptyView extends BaseView {
      * Define Empty Rules Element
      * @type {module.EmptyRulesElement}
      */
-    this.elements.$rules = new this.fetchElement('Rules')(null, this, {
+    this.elements.$rules = this.fetchElement('Rules', {
       data: this.controller.getRules(),
       rules: {
         widget: widgetRules,
@@ -130,11 +140,17 @@ module.exports = class EmptyView extends BaseView {
 
   /**
    * @memberOf EmptyView
-   * @param name
+   * @param {string} name
+   * @param opts
    * @return {*}
    */
-  fetchElement(name) {
-    return this.constructor.getElements()[name];
+  fetchElement(name, opts) {
+
+    /**
+     * @constant ContentElement
+     */
+    const ContentElement = this.constructor.getElements()[name];
+    return new ContentElement(null, this, opts);
   }
 
   /**
@@ -142,6 +158,12 @@ module.exports = class EmptyView extends BaseView {
    * @memberOf EmptyView
    */
   render() {
-    this.scope.observer.publish(this.scope.eventManager.eventList.successRendered, this.renderContent.bind(this));
+
+    /**
+     * @constant scope
+     * @type {module.Empty}
+     */
+    const scope = this.scope;
+    scope.observer.publish(scope.eventManager.eventList.successRendered, this.renderContent.bind(this));
   }
 };

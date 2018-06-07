@@ -113,7 +113,7 @@ module.exports = class WidgetContentEventManager extends BaseEvent {
         subscribe = rules.subscribe || {},
         name = scope.name.toLowerCase();
 
-    publish[name] = scope.base.define(publish[name], [], true);
+    publish[name] = publish[name] || [];
 
     for (let i = 0, l = this.onLoadEvents.length; i < l; i++) {
       const event = this.onLoadEvents[i];

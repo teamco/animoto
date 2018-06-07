@@ -12,12 +12,6 @@
 const AntHill = require('../../../core/config/anthill.js');
 
 /**
- * @constant MVC
- * @type {module.MVC}
- */
-const MVC = require('../../../core/lib/modules/MVC.js');
-
-/**
  * @class Empty
  * @extends AntHill
  */
@@ -46,6 +40,15 @@ module.exports = class Empty extends AntHill {
      */
     this.referrer = undefined;
 
+    this.initContent(opts);
+  };
+
+  /**
+   * @memberOf Empty
+   * @param opts
+   */
+  initContent(opts) {
+
     /**
      * @constant DEFAULTS
      * @type {{
@@ -73,21 +76,17 @@ module.exports = class Empty extends AntHill {
       }
     };
 
-    this.initContent(DEFAULTS, opts);
-  };
-
-  /**
-   * @memberOf Empty
-   * @param DEFAULTS
-   * @param opts
-   */
-  initContent(DEFAULTS, opts) {
-
     /**
      * @constant components
      * @type {{Controller, Model, View, EventManager, Permission}}
      */
     const components = Empty.fetchComponents();
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../../core/lib/modules/MVC.js');
 
     /**
      * @type {module.MVC}

@@ -26,7 +26,7 @@ module.exports = class EmptyElement extends PluginElement {
    */
   constructor(name, view, opts) {
     super(name || 'EmptyElement', view, false);
-    this.configElement(view, opts)
+    this.configElement(view, opts);
   }
 
   /**

@@ -21,7 +21,7 @@ module.exports = class PageTabsElement extends EmptyElement {
    * @param opts
    */
   constructor(name, view, opts) {
-    super(name || 'PageTabsElement', view, false);
+    super(name || 'PageTabsElement', view, opts);
 
     /**
      * Define current page class name
@@ -70,7 +70,7 @@ module.exports = class PageTabsElement extends EmptyElement {
 
         /**
          * Show page in tabs
-         * @type {PagesPreferences.defaultPrefs.showInTabs|*}
+         * @type {{type: string, disabled: boolean, value}|PageModel.preferences.showInTabs}
          */
         show = item.model.getConfig('preferences').showInTabs;
 
@@ -83,8 +83,8 @@ module.exports = class PageTabsElement extends EmptyElement {
           order = item.model.getConfig('preferences').order;
 
           /**
-           * Define tab
-           * @type {jQuery}
+           * @constant $tab
+           * @type {PageTabsItemElement.$|jQuery}
            */
           const $tab = this.view.renderPageTabsItem(item);
 
@@ -99,7 +99,7 @@ module.exports = class PageTabsElement extends EmptyElement {
   /**
    * Set page tab as current
    * @memberOf PageTabsElement
-   * @param {Page} page
+   * @param {module.Page} page
    */
   setPageTabAsCurrent(page) {
 

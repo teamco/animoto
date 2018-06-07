@@ -56,7 +56,7 @@ module.exports = class PageTabsView extends EmptyView {
    * Render page tab element
    * @memberOf PageTabsView
    * @param {Page} pageTab
-   * @return {PageTabsItemElement}
+   * @return {PageTabsItemElement.$|jQuery}
    */
   renderPageTabsItem(pageTab) {
 
@@ -65,7 +65,7 @@ module.exports = class PageTabsView extends EmptyView {
      * @type {PageTabsItemElement}
      * @return {jQuery}
      */
-    const $pageTab = new this.fetchElement('Item')(this, {
+    const $pageTab = this.fetchElement('Item', {
       $container: this.get$item().$,
       pageTab: pageTab,
       style: 'page-tabs-item'

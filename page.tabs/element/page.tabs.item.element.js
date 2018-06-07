@@ -30,7 +30,7 @@ module.exports = class PageTabsItemElement extends PluginElement {
     /**
      * Define page tab item
      * @property PageTabsItemElement
-     * @type {Page}
+     * @type {module.Page}
      */
     this.pageTab = opts.pageTab;
 
@@ -44,7 +44,6 @@ module.exports = class PageTabsItemElement extends PluginElement {
    */
   configElement(view, opts) {
     this._config(view, opts, $('<li role="presentation" />')).build(opts);
-    this.addCSS('empty', {resource: '/widgets'});
     this.initContent();
   }
 
@@ -92,7 +91,7 @@ module.exports = class PageTabsItemElement extends PluginElement {
    * @memberOf PageTabsItemElement
    */
   bindClick() {
-    this.$.off('click.pageTab').on('click.pageTab', this.clickCallback.bind(this));
+    this.$[0].addEventListener('click', this.clickCallback.bind(this), false);
   }
 
   /**

@@ -18,12 +18,20 @@ const Empty = require('../empty/empty.js');
 module.exports = class PageTabs extends Empty {
 
   /**
+   * @param name
    * @param containment
    * @param [opts]
    * @constructor
    */
-  constructor(containment, opts) {
-    super('PageTabs', containment, opts);
+  constructor(name, containment, opts) {
+    super(name || 'PageTabs', containment, opts);
+  };
+
+  /**
+   * @memberOf PageTabs
+   * @param opts
+   */
+  initContent(opts) {
 
     /**
      * Define defaults
@@ -40,7 +48,7 @@ module.exports = class PageTabs extends Empty {
     const DEFAULTS = {
       plugin: true,
       html: {
-        style: 'default',
+        style: 'red',
         header: false,
         footer: false,
         padding: {
@@ -52,21 +60,17 @@ module.exports = class PageTabs extends Empty {
       }
     };
 
-    this.initContent(DEFAULTS, opts);
-  };
-
-  /**
-   * @memberOf PageTabs
-   * @param DEFAULTS
-   * @param opts
-   */
-  initContent(DEFAULTS, opts) {
-
     /**
      * @constant components
      * @type {{Controller, Model, View, EventManager, Permission}}
      */
     const components = PageTabs.fetchComponents();
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../../core/lib/modules/MVC.js');
 
     /**
      * @type {module.MVC}
@@ -115,7 +119,7 @@ module.exports = class PageTabs extends Empty {
      * @constant PageTabsModel
      * @type {module.PageTabsModel}
      */
-    const PageTabsModel = require('./mvc/page.tabs.controller.js');
+    const PageTabsModel = require('./mvc/page.tabs.model.js');
 
     /**
      * @constant PageTabsView
