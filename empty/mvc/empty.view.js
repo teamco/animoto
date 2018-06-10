@@ -83,9 +83,16 @@ module.exports = class EmptyView extends BaseView {
   /**
    * Render Prefs
    * @memberOf EmptyView
+   * @param {module.PageDataView} pageDataView
    * @returns {EmptyPreferencesElement}
    */
-  renderPreferences() {
+  renderPreferences(pageDataView) {
+
+    /**
+     * @property EmptyView
+     * @type {module.PageDataView}
+     */
+    this.pageDataView = pageDataView;
 
     /**
      * Define Empty Preferences Element
