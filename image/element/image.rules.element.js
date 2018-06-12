@@ -5,38 +5,26 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/rules/widget/widget.base.rules'
-], function defineImageRulesElement(PluginElement, BaseWidgetRules) {
+/**
+ * @constant EmptyRulesElement
+ * @type {module.EmptyRulesElement}
+ */
+const EmptyRulesElement = require('../../empty/element/empty.rules.element.js');
+
+/**
+ * @class ImageRulesElement
+ * @extends EmptyRulesElement
+ * @type {module.ImageRulesElement}
+ */
+module.exports = class ImageRulesElement extends EmptyRulesElement {
 
   /**
-   * Define Image Rules Element
-   * @param view
-   * @param opts
-   * @returns {ImageRulesElement}
    * @constructor
-   * @class ImageRulesElement
-   * @extends PluginElement
-   * @extends BaseWidgetRules
+   * @param {string} [name]
+   * @param {ImageView} view
+   * @param opts
    */
-  var ImageRulesElement = function ImageRulesElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    this.renderBaseRulesData(
-        opts.data,
-        opts.rules.widget,
-        opts.rules.content
-    );
-
-    return this;
-  };
-
-  return ImageRulesElement.extend('ImageRulesElement', {},
-      PluginElement.prototype, BaseWidgetRules.prototype);
-
-});
+  constructor(name, view, opts) {
+    super(name || 'ImageRulesElement', view, opts);
+  }
+};

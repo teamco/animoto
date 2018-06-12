@@ -5,85 +5,70 @@
  * Time: 11:48 AM
  */
 
-defineP([
-  'plugins/plugin.element',
-  'plugins/preferences/widget.preferences'
-], function defineImagePreferencesElement(PluginElement, WidgetPreferences) {
+/**
+ * @constant EmptyPreferencesElement
+ * @type {module.EmptyPreferencesElement}
+ */
+const EmptyPreferencesElement = require('../../empty/element/empty.preferences.element.js');
+
+/**
+ * @class ImagePreferencesElement
+ * @extends EmptyPreferencesElement
+ * @type {module.ImagePreferencesElement}
+ */
+module.exports = class ImagePreferencesElement extends EmptyPreferencesElement {
 
   /**
-   * Define Image Preferences Element
    * @constructor
-   * @class ImagePreferencesElement
-   * @extends PluginElement
-   * @extends WidgetPreferences
+   * @param {string} [name]
    * @param {ImageView} view
    * @param opts
-   * @returns {ImagePreferencesElement}
    */
-  var ImagePreferencesElement = function ImagePreferencesElement(view, opts) {
-
-    this._config(view, opts, $('<div />')).build({
-      $container: opts.$container,
-      destroy: true
-    });
-
-    this.renderBasePrefsData(opts.data);
+  constructor(name, view, opts) {
+    super(name || 'ImagePreferencesElement', view, opts);
     this.renderImagePlaceholder();
+  }
 
-    return this;
-  };
+  /**
+   * Define image placeholder
+   * @memberOf ImagePreferencesElement
+   */
+  renderImagePlaceholder() {
 
-  return ImagePreferencesElement.extend(
-      'ImagePreferencesElement', {
+    // Get image prefs container
+    const $container = $('#content', this.$);
+    $container.append('<img class="image-preview" />');
 
-        /**
-         * Define image placeholder
-         * @memberOf ImagePreferencesElement
-         */
-        renderImagePlaceholder: function renderImagePlaceholder() {
+    // Update image
+    const $url = $('textarea[name="imageUrl"]', $container);
+    this.updatePreviewImage(this, {target: $url[0]});
+  }
 
-          // Get image prefs container
-          var $container = $('#content', this.$);
+  /**
+   * Update preview image
+   * @memberOf ImagePreferencesElement
+   * @param {ModalElement} $modal
+   * @param event
+   */
+  updatePreviewImage($modal, event) {
+    const $img = $('img.image-preview', $modal.$),
+        target = event.target,
+        view = this.view,
+        $item = view.get$item();
 
-          $container.append('<img class="image-preview" />');
+    if (!target) {
+      view.scope.logger.debug('Undefined target', event);
+      return false;
+    }
 
-          // Update image
-          var $url = $('textarea[name="imageUrl"]', $container);
+    // Get callback
+    const callback = 'update' + target.name.replace(/image/, '');
 
-          this.updatePreviewImage(this, {target: $url[0]});
-        },
+    if (typeof $item[callback] !== 'function') {
+      view.scope.logger.warn('Undefined callback', callback);
+      return false;
+    }
 
-        /**
-         * Update preview image
-         * @memberOf ImagePreferencesElement
-         * @param {ModalElement} $modal
-         * @param event
-         */
-        updatePreviewImage: function updatePreviewImage($modal, event) {
-
-          var $img = $('img.image-preview', $modal.$),
-              target = event.target,
-              view = this.view,
-              $item = view.get$item();
-
-          if (!target) {
-            view.scope.logger.debug('Undefined target', event);
-            return false;
-          }
-
-          // Get callback
-          var callback = 'update' + target.name.replace(/image/, '');
-
-          if (typeof $item[callback] !== 'function') {
-
-            view.scope.logger.warn('Undefined callback', callback);
-            return false;
-          }
-
-          $item[callback]($img, target.value);
-        }
-      },
-      PluginElement.prototype,
-      WidgetPreferences.prototype
-  );
-});
+    $item[callback]($img, target.value);
+  }
+};

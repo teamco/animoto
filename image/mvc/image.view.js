@@ -6,104 +6,59 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/View',
-  'element/header.element',
-  'element/footer.element',
-  'plugins/widgets/image/element/image.element',
-  'plugins/widgets/image/element/image.preferences.element',
-  'plugins/widgets/image/element/image.rules.element'
-], function defineImageView(BaseView, Header, Footer, ImageElement,
-    ImagePreferencesElement, ImageRulesElement) {
+/**
+ * @constant EmptyView
+ * @type {module.EmptyView}
+ */
+const EmptyView = require('../../empty/mvc/empty.view.js');
+
+/**
+ * @constant ContentElement
+ * @type {module.ImageElement}
+ */
+const ContentElement = require('../element/image.element.js');
+
+/**
+ * @constant PreferencesElement
+ * @type {module.ImagePreferencesElement}
+ */
+const PreferencesElement = require('../element/image.preferences.element.js');
+
+/**
+ * @constant RulesElement
+ * @type {module.ImageRulesElement}
+ */
+const RulesElement = require('../element/image.rules.element.js');
+
+/**
+ * @class ImageView
+ * @extends EmptyView
+ * @type {module.ImageView}
+ */
+module.exports = class ImageView extends EmptyView {
 
   /**
-   * Define view
-   * @class ImageView
-   * @extends BaseView
    * @constructor
+   * @param {string} name
+   * @param scope
    */
-  var ImageView = function ImageView() {
-  };
+  constructor(name, scope) {
+    super(name || 'ImageView', scope, false);
+  }
 
-  return ImageView.extend('ImageView', {
-
-    /**
-     * Render image element
-     * @memberOf ImageView
-     */
-    renderImage: function renderImage() {
-
-      this.header(Header, this.get$container());
-
-      /**
-       * Define $image
-       * @type {ImageElement}
-       */
-      this.elements.$image = new ImageElement(this, {
-        $container: this.get$container().$
-      });
-
-      this.footer(Footer, this.get$container());
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.checkEmbeddedContent
-      );
-    },
-
-    /**
-     * Render Prefs
-     * @memberOf ImageView
-     * @returns {ImagePreferencesElement}
-     */
-    renderPreferences: function renderPreferences() {
-
-      /**
-       * Define Image Preferences Element
-       * @type {ImagePreferencesElement}
-       */
-      this.elements.$preferences = new ImagePreferencesElement(this, {
-        data: this.controller.getPreferences()
-      });
-
-      return this.get$preferences();
-    },
-
-    /**
-     * Render Rules
-     * @memberOf ImageView
-     * @param widgetRules
-     * @param contentRules
-     * @returns {ImageRulesElement}
-     */
-    renderRules: function renderRules(widgetRules, contentRules) {
-
-      /**
-       * Define Image Rules Element
-       * @type {ImageRulesElement}
-       */
-      this.elements.$rules = new ImageRulesElement(this, {
-        data: this.controller.getRules(),
-        rules: {
-          widget: widgetRules,
-          content: contentRules
-        }
-      });
-
-      return this.get$rules();
-    },
-
-    /**
-     * Render image
-     * @memberOf ImageView
-     */
-    render: function render() {
-
-      this.scope.observer.publish(
-          this.scope.eventManager.eventList.successRendered,
-          this.renderImage.bind(this)
-      );
-    }
-
-  }, BaseView.prototype)
-
-});
+  /**
+   * @memberOf ImageView
+   * @return {{
+   *  Content: module.ImageElement,
+   *  Preferences: module.ImagePreferencesElement,
+   *  Rules: module.ImageRulesElement
+   * }}
+   */
+  static getElements() {
+    return {
+      Content: ContentElement,
+      Preferences: PreferencesElement,
+      Rules: RulesElement
+    };
+  }
+};

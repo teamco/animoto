@@ -14,6 +14,7 @@ const EmptyPermission = require('../../empty/mvc/empty.permission.js');
 
 /**
  * @class PageTabsPermission
+ * @extends EmptyPermission
  * @type {module.PageTabsPermission}
  */
 module.exports = class PageTabsPermission extends EmptyPermission {
@@ -21,7 +22,7 @@ module.exports = class PageTabsPermission extends EmptyPermission {
   /**
    * @constructor
    * @param {string} [name]
-   * @param scope
+   * @param {module.PageTabs} scope
    */
   constructor(name, scope) {
     super(name || 'PageTabsPermission', scope, false);

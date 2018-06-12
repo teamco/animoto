@@ -83,16 +83,16 @@ module.exports = class EmptyView extends BaseView {
   /**
    * Render Prefs
    * @memberOf EmptyView
-   * @param {module.PageDataView} pageDataView
+   * @param {module.PageDataView} dataView
    * @returns {EmptyPreferencesElement}
    */
-  renderPreferences(pageDataView) {
+  renderPreferences(dataView) {
 
     /**
      * @property EmptyView
      * @type {module.PageDataView}
      */
-    this.pageDataView = pageDataView;
+    this.dataView = dataView;
 
     /**
      * Define Empty Preferences Element
@@ -141,7 +141,7 @@ module.exports = class EmptyView extends BaseView {
     return {
       Content: ContentElement,
       Preferences: PreferencesElement,
-      Rules: RulesElement,
+      Rules: RulesElement
     }
   }
 

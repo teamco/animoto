@@ -6,25 +6,29 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'plugins/widgets/widget.content.event.manager'
-], function defineImageEventManager(WidgetContentEventManager) {
+/**
+ * @constant EmptyEventManager
+ * @type {module.EmptyEventManager}
+ */
+const EmptyEventManager = require('../../empty/mvc/empty.event.manager.js');
+
+/**
+ * @class PageTabsEventManager
+ * @type {module.ImageEventManager}
+ */
+module.exports = class ImageEventManager extends EmptyEventManager {
 
   /**
-   * Define Image event manager
-   * @class ImageEventManager
    * @constructor
-   * @extends WidgetContentEventManager
-   * @extends BaseEvent
+   * @param {string} name
+   * @param {module.Image} scope
    */
-  var ImageEventManager = function ImageEventManager() {
+  constructor(name, scope) {
+    super(name || 'ImageEventManager', scope, false);
 
     this.updateEventList({
       checkEmbeddedContent: 'check.embedded.content',
       splitEmbeddedContent: 'split.embedded.content'
     });
   };
-
-  return ImageEventManager.extend('ImageEventManager', {},
-      WidgetContentEventManager.prototype);
-});
+};

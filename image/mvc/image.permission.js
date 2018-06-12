@@ -6,20 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-defineP([
-  'modules/Permission'
-], function defineImagePermission(BasePermission) {
+/**
+ * @constant EmptyPermission
+ * @type {module.EmptyPermission|*}
+ */
+const EmptyPermission = require('../../empty/mvc/empty.permission.js');
+
+/**
+ * @class ImagePermission
+ * @extends EmptyPermission
+ * @type {module.ImagePermission}
+ */
+module.exports = class ImagePermission extends EmptyPermission {
 
   /**
-   * Define Permissions
-   * @class ImagePermission
    * @constructor
-   * @extends BasePermission
+   * @param {string} [name]
+   * @param {module.Image} scope
    */
-  var ImagePermission = function ImagePermission() {
-
-  };
-
-  return ImagePermission.extend('ImagePermission', {},
-      BasePermission.prototype);
-});
+  constructor(name, scope) {
+    super(name || 'ImagePermission', scope, false);
+  }
+};

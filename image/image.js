@@ -5,60 +5,48 @@
  * Time: 11:02 AM
  */
 
-defineP([
-  'config/anthill',
-  'modules/MVC',
-  'plugins/widgets/image/mvc/image.controller',
-  'plugins/widgets/image/mvc/image.model',
-  'plugins/widgets/image/mvc/image.view',
-  'plugins/widgets/image/mvc/image.event.manager',
-  'plugins/widgets/image/mvc/image.permission'
-], function defineImage(AntHill, MVC, Controller, Model, View, EventManager,
-    Permission) {
+/**
+ * @constant Empty
+ * @type {module.Empty|*}
+ */
+const Empty = require('../empty/empty.js');
+
+/**
+ * @class Image
+ * @type {module.Image}
+ */
+module.exports = class Image extends Empty {
 
   /**
-   * Define Image
-   * @param {Widget} containment
+   * @param name
+   * @param containment
    * @param [opts]
    * @constructor
-   * @class Image
-   * @extends AntHill
    */
-  var Image = function Image(containment, opts) {
+  constructor(name, containment, opts) {
+    super(name || 'Image', containment, opts);
+  };
 
-    /**
-     * Define containment
-     * @property Image
-     * @type {Widget}
-     */
-    this.containment = containment;
-
-    /**
-     * Define referrer
-     * @property Image
-     * @type {*}
-     */
-    this.referrer = undefined;
+  /**
+   * @memberOf Image
+   * @param opts
+   */
+  initContent(opts) {
 
     /**
      * Define defaults
      * @type {{
-     *      plugin: boolean,
-     *      html: {
-     *          style: string,
-     *          header: boolean,
-     *          footer: boolean,
-     *          floating: boolean,
-     *          padding: {
-     *              top: number,
-     *              right: number,
-     *              bottom: number,
-     *              left: number
-     *          }
-     *      }
+     *  plugin: boolean,
+     *  html: {
+     *    style: string,
+     *    header: boolean,
+     *    footer: boolean,
+     *    floating: boolean,
+     *    padding: {top: number, right: number, bottom: number, left: number}
+     *  }
      * }}
      */
-    var DEFAULTS = {
+    const DEFAULTS = {
       plugin: true,
       html: {
         style: 'default',
@@ -74,31 +62,83 @@ defineP([
     };
 
     /**
-     * Define MVC
-     * @property Image
-     * @type {MVCJs}
+     * @constant components
+     * @type {{Controller, Model, View, EventManager, Permission}}
      */
-    this.mvc = new MVC({
+    const components = Image.fetchComponents();
+
+    /**
+     * @constant MVC
+     * @type {module.MVC}
+     */
+    const MVC = require('../../../core/lib/modules/MVC.js');
+
+    /**
+     * @type {module.MVC}
+     */
+    new MVC({
       scope: this,
       config: [
         {uuid: this.containment.model.getContentUUID()},
         DEFAULTS
       ],
       components: [
-        Controller,
-        Model,
-        View,
-        EventManager,
-        Permission
+        components.Controller,
+        components.Model,
+        components.View,
+        components.EventManager,
+        components.Permission
       ],
       render: true
     });
 
-    this.observer.publish(
-        this.eventManager.eventList.initWidget,
-        opts
-    );
-  };
+    this.observer.publish(this.eventManager.eventList.initWidget, opts);
+  }
 
-  return Image.extend('Image', {}, AntHill.prototype);
-});
+  /**
+   * @method init
+   * @memberOf Image
+   * @static
+   * @returns {*}
+   */
+  static fetchComponents() {
+
+    /**
+     * @constant ImageController
+     * @type {module.ImageController}
+     */
+    const ImageController = require('./mvc/image.controller.js');
+
+    /**
+     * @constant ImageModel
+     * @type {module.ImageModel}
+     */
+    const ImageModel = require('./mvc/image.model.js');
+
+    /**
+     * @constant ImageView
+     * @type {module.ImageView}
+     */
+    const ImageView = require('./mvc/image.view.js');
+
+    /**
+     * @constant ImageEventManager
+     * @type {module.ImageEventManager}
+     */
+    const ImageEventManager = require('./mvc/image.event.manager.js');
+
+    /**
+     * @constant ImagePermission
+     * @type {module.ImagePermission}
+     */
+    const ImagePermission = require('./mvc/image.permission.js');
+
+    return {
+      Controller: ImageController,
+      Model: ImageModel,
+      View: ImageView,
+      EventManager: ImageEventManager,
+      Permission: ImagePermission
+    };
+  }
+};
