@@ -6,4 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-module.exports = {};
+defineP([], function defineEnUs() {
+
+  return {};
+});

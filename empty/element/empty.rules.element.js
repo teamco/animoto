@@ -6,23 +6,29 @@
  */
 
 /**
+ * Aggregation of base class and mixin classes.
+ * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
+ */
+const aggregation = require('../../../../core/lib/extends/aggregation.js');
+
+/**
  * @constant PluginElement
  * @type {module.PluginElement}
  */
 const PluginElement = require('../../../plugin.element.js');
 
 /**
- * @constant BaseRules
- * @type {module.BaseRules}
+ * @constant BaseWidgetRules
+ * @type {module.BaseWidgetRules}
  */
-const BaseRules = require('../../../rules/widget/rules');
+const BaseWidgetRules = require('../../../rules/widget/widget.base.rules.js');
 
 /**
  * @class EmptyRulesElement
- * @extends BaseRules
+ * @extends {PluginElement, BaseWidgetRules}
  * @type {module.EmptyRulesElement}
  */
-module.exports = class EmptyRulesElement extends PluginElement {
+module.exports = class EmptyRulesElement extends aggregation(PluginElement, BaseWidgetRules) {
 
   /**
    * @constructor
@@ -32,14 +38,7 @@ module.exports = class EmptyRulesElement extends PluginElement {
    */
   constructor(name, view, opts) {
     super(name || 'EmptyRulesElement', view, false);
-
-    /**
-     * @property EmptyRulesElement
-     * @type {module.BaseRules}
-     */
-    this.rules = new BaseRules('BaseRules', this);
-
     this._config(view, opts, $('<div />')).build(opts);
-    this.rules.renderBaseRulesData(opts.data, opts.rules.widget, opts.rules.content);
+    this.renderBaseRulesData(opts.data, opts.rules.widget, opts.rules.content);
   }
 };
