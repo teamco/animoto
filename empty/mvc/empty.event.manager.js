@@ -6,17 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant WidgetContentEventManager
- * @type {module.WidgetContentEventManager|*}
- */
-const WidgetContentEventManager = require('../../widget.content.event.manager.js');
+import {WidgetContentEventManager} from '../../widget.content.event.manager';
 
 /**
  * @class EmptyEventManager
- * @type {module.EmptyEventManager}
+ * @type {EmptyEventManager}
  */
-module.exports = class EmptyEventManager extends WidgetContentEventManager {
+export class EmptyEventManager extends WidgetContentEventManager {
 
   /**
    * @constructor
@@ -24,7 +20,7 @@ module.exports = class EmptyEventManager extends WidgetContentEventManager {
    * @param {Empty} scope
    */
   constructor(name, scope) {
-    super(name || 'EmptyEventManager', scope, false);
+    super(name || 'EmptyEventManager', scope);
     this.updateEventList({});
   }
-};
+}

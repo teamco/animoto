@@ -8,40 +8,40 @@
 
 /**
  * @constant EmptyView
- * @type {module.EmptyView}
+ * @type {EmptyView}
  */
 const EmptyView = require('../../empty/mvc/empty.view.js');
 
 /**
  * @constant ContentElement
- * @type {module.PageTabsElement}
+ * @type {PageTabsElement}
  */
 const ContentElement = require('../element/page.tabs.element.js');
 
 /**
  * @constant PreferencesElement
- * @type {module.PageTabsPreferencesElement}
+ * @type {PageTabsPreferencesElement}
  */
 const PreferencesElement = require('../element/page.tabs.preferences.element.js');
 
 /**
  * @constant RulesElement
- * @type {module.PageTabsRulesElement}
+ * @type {PageTabsRulesElement}
  */
 const RulesElement = require('../element/page.tabs.rules.element.js');
 
 /**
  * @constant ItemElement
- * @type {module.PageTabsItemElement}
+ * @type {PageTabsItemElement}
  */
 const ItemElement = require('../element/page.tabs.item.element.js');
 
 /**
  * @class PageTabsView
  * @extends EmptyView
- * @type {module.PageTabsView}
+ * @type {PageTabsView}
  */
-module.exports = class PageTabsView extends EmptyView {
+export class PageTabsView extends EmptyView {
 
   /**
    * @constructor

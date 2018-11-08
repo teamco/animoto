@@ -2,17 +2,13 @@
  * Created by teamco on 4/30/14.
  */
 
-/**
- * @constant BaseEvent
- * @type {BaseEvent}
- */
-const BaseEvent = require('../../core/lib/modules/Event.js');
+import {BaseEvent} from '../../modules/Event';
 
 /**
  * @class WidgetContentEventManager
  * @extends BaseEvent
  */
-module.exports = class WidgetContentEventManager extends BaseEvent {
+export class WidgetContentEventManager extends BaseEvent {
 
   /**
    * @constructor
@@ -20,7 +16,7 @@ module.exports = class WidgetContentEventManager extends BaseEvent {
    * @param {Page} scope
    */
   constructor(name, scope) {
-    super(name || 'WidgetContentEventManager', scope, false);
+    super(name || 'WidgetContentEventManager', scope);
 
     /**
      * @property WidgetContentEventManager
@@ -126,4 +122,4 @@ module.exports = class WidgetContentEventManager extends BaseEvent {
       }
     }
   }
-};
+}

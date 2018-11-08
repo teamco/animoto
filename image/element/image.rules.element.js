@@ -7,16 +7,16 @@
 
 /**
  * @constant EmptyRulesElement
- * @type {module.EmptyRulesElement}
+ * @type {EmptyRulesElement}
  */
 const EmptyRulesElement = require('../../empty/element/empty.rules.element.js');
 
 /**
  * @class ImageRulesElement
  * @extends EmptyRulesElement
- * @type {module.ImageRulesElement}
+ * @type {ImageRulesElement}
  */
-module.exports = class ImageRulesElement extends EmptyRulesElement {
+export class ImageRulesElement extends EmptyRulesElement {
 
   /**
    * @constructor

@@ -7,20 +7,20 @@
  */
 /**
  * @constant EmptyModel
- * @type {module.EmptyModel}
+ * @type {EmptyModel}
  */
 const EmptyModel = require('../../empty/mvc/empty.model.js');
 
 /**
  * @class PageTabsModel
- * @type {module.ImageModel}
+ * @type {ImageModel}
  */
-module.exports = class ImageModel extends EmptyModel {
+export class ImageModel extends EmptyModel {
 
   /**
    * @constructor
    * @param {string} name
-   * @param {module.Image} scope
+   * @param {Image} scope
    */
   constructor(name, scope) {
     super(name || 'ImageModel', scope, false);

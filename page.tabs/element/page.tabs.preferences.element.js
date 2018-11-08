@@ -7,16 +7,16 @@
 
 /**
  * @constant EmptyPreferencesElement
- * @type {module.EmptyPreferencesElement}
+ * @type {EmptyPreferencesElement}
  */
 const EmptyPreferencesElement = require('../../empty/element/empty.preferences.element.js');
 
 /**
  * @class PageTabsPreferencesElement
  * @extends EmptyPreferencesElement
- * @type {module.PageTabsPreferencesElement}
+ * @type {PageTabsPreferencesElement}
  */
-module.exports = class PageTabsPreferencesElement extends EmptyPreferencesElement {
+export class PageTabsPreferencesElement extends EmptyPreferencesElement {
 
   /**
    * @constructor

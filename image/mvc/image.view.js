@@ -8,34 +8,34 @@
 
 /**
  * @constant EmptyView
- * @type {module.EmptyView}
+ * @type {EmptyView}
  */
 const EmptyView = require('../../empty/mvc/empty.view.js');
 
 /**
  * @constant ContentElement
- * @type {module.ImageElement}
+ * @type {ImageElement}
  */
 const ContentElement = require('../element/image.element.js');
 
 /**
  * @constant PreferencesElement
- * @type {module.ImagePreferencesElement}
+ * @type {ImagePreferencesElement}
  */
 const PreferencesElement = require('../element/image.preferences.element.js');
 
 /**
  * @constant RulesElement
- * @type {module.ImageRulesElement}
+ * @type {ImageRulesElement}
  */
 const RulesElement = require('../element/image.rules.element.js');
 
 /**
  * @class ImageView
  * @extends EmptyView
- * @type {module.ImageView}
+ * @type {ImageView}
  */
-module.exports = class ImageView extends EmptyView {
+export class ImageView extends EmptyView {
 
   /**
    * @constructor

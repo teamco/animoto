@@ -7,16 +7,16 @@
 
 /**
  * @constant PluginElement
- * @type {module.PluginElement}
+ * @type {PluginElement}
  */
 const PluginElement = require('../../../plugin.element.js');
 
 /**
  * @class PageTabsItemElement
  * @extends PluginElement
- * @type {module.PageTabsItemElement}
+ * @type {PageTabsItemElement}
  */
-module.exports = class PageTabsItemElement extends PluginElement {
+export class PageTabsItemElement extends PluginElement {
 
   /**
    * @param {string} [name]
@@ -30,7 +30,7 @@ module.exports = class PageTabsItemElement extends PluginElement {
     /**
      * Define page tab item
      * @property PageTabsItemElement
-     * @type {module.Page}
+     * @type {Page}
      */
     this.pageTab = opts.pageTab;
 
@@ -107,7 +107,7 @@ module.exports = class PageTabsItemElement extends PluginElement {
 
     /**
      * Get scope
-     * @type {module.PageTabs}
+     * @type {PageTabs}
      */
     const scope = this.view.scope;
     scope.observer.publish(scope.eventManager.eventList.switchToPage, [this, e]);

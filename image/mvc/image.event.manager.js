@@ -8,20 +8,20 @@
 
 /**
  * @constant EmptyEventManager
- * @type {module.EmptyEventManager}
+ * @type {EmptyEventManager}
  */
 const EmptyEventManager = require('../../empty/mvc/empty.event.manager.js');
 
 /**
  * @class PageTabsEventManager
- * @type {module.ImageEventManager}
+ * @type {ImageEventManager}
  */
-module.exports = class ImageEventManager extends EmptyEventManager {
+export class ImageEventManager extends EmptyEventManager {
 
   /**
    * @constructor
    * @param {string} name
-   * @param {module.Image} scope
+   * @param {Image} scope
    */
   constructor(name, scope) {
     super(name || 'ImageEventManager', scope, false);

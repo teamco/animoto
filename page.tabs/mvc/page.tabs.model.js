@@ -8,15 +8,15 @@
 
 /**
  * @constant EmptyModel
- * @type {module.EmptyModel}
+ * @type {EmptyModel}
  */
 const EmptyModel = require('../../empty/mvc/empty.model.js');
 
 /**
  * @class PageTabsModel
- * @type {module.PageTabsModel}
+ * @type {PageTabsModel}
  */
-module.exports = class PageTabsModel extends EmptyModel {
+export class PageTabsModel extends EmptyModel {
 
   /**
    * @constructor

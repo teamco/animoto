@@ -7,7 +7,7 @@
 
 /**
  * @constant EmptyController
- * @type {module.EmptyController|*}
+ * @type {EmptyController|*}
  */
 const EmptyController = require('../../empty/mvc/empty.controller.js');
 
@@ -15,7 +15,7 @@ const EmptyController = require('../../empty/mvc/empty.controller.js');
  * @class PageTabsController
  * @extends EmptyController
  */
-module.exports = class PageTabsController extends EmptyController {
+export class PageTabsController extends EmptyController {
 
   /**
    * @param {string} [name]
@@ -34,7 +34,7 @@ module.exports = class PageTabsController extends EmptyController {
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const ws = this.controller.getWorkspace();
     const pages = ws.model.getItems();
@@ -44,7 +44,7 @@ module.exports = class PageTabsController extends EmptyController {
 
         /**
          * Get page
-         * @type {module.Page}
+         * @type {Page}
          */
         const page = pages[index];
 
@@ -105,13 +105,13 @@ module.exports = class PageTabsController extends EmptyController {
 
     /**
      * Get workspace
-     * @type {module.WorkspaceEventManager|{subscribe, eventList}}
+     * @type {WorkspaceEventManager|{subscribe, eventList}}
      */
     const eventManager = scope.eventManager;
 
     /**
      * @constant pageTabs
-     * @type {module.PageTabsController|{observer}}
+     * @type {PageTabsController|{observer}}
      */
     const pageTabs = this;
 
@@ -131,7 +131,7 @@ module.exports = class PageTabsController extends EmptyController {
 
     /**
      * Get workspace
-     * @type {module.Workspace}
+     * @type {Workspace}
      */
     const ws = this.controller.getWorkspace();
 
@@ -147,7 +147,7 @@ module.exports = class PageTabsController extends EmptyController {
 
     /**
      * @constant page
-     * @type {module.Page|{}}
+     * @type {Page|{}}
      */
     const page = this.controller.getPage();
     this.utils.waitFor(
@@ -173,7 +173,7 @@ module.exports = class PageTabsController extends EmptyController {
 
       /**
        * Get workspace
-       * @type {module.Workspace}
+       * @type {Workspace}
        */
       const workspace = this.controller.getWorkspace();
 

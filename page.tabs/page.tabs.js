@@ -7,15 +7,15 @@
 
 /**
  * @constant Empty
- * @type {module.Empty|*}
+ * @type {Empty|*}
  */
 const Empty = require('../empty/empty.js');
 
 /**
  * @class PageTabs
- * @type {module.PageTabs}
+ * @type {PageTabs}
  */
-module.exports = class PageTabs extends Empty {
+export class PageTabs extends Empty {
 
   /**
    * @param name
@@ -68,12 +68,12 @@ module.exports = class PageTabs extends Empty {
 
     /**
      * @constant MVC
-     * @type {module.MVC}
+     * @type {MVC}
      */
     const MVC = require('../../../core/lib/modules/MVC.js');
 
     /**
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -111,31 +111,31 @@ module.exports = class PageTabs extends Empty {
 
     /**
      * @constant PageTabsController
-     * @type {module.PageTabsController}
+     * @type {PageTabsController}
      */
     const PageTabsController = require('./mvc/page.tabs.controller.js');
 
     /**
      * @constant PageTabsModel
-     * @type {module.PageTabsModel}
+     * @type {PageTabsModel}
      */
     const PageTabsModel = require('./mvc/page.tabs.model.js');
 
     /**
      * @constant PageTabsView
-     * @type {module.PageTabsView}
+     * @type {PageTabsView}
      */
     const PageTabsView = require('./mvc/page.tabs.view.js');
 
     /**
      * @constant PageTabsEventManager
-     * @type {module.PageTabsEventManager}
+     * @type {PageTabsEventManager}
      */
     const PageTabsEventManager = require('./mvc/page.tabs.event.manager.js');
 
     /**
      * @constant PageTabsPermission
-     * @type {module.PageTabsPermission}
+     * @type {PageTabsPermission}
      */
     const PageTabsPermission = require('./mvc/page.tabs.permission.js');
 

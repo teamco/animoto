@@ -8,15 +8,15 @@
 
 /**
  * @constant EmptyEventManager
- * @type {module.EmptyEventManager}
+ * @type {EmptyEventManager}
  */
 const EmptyEventManager = require('../../empty/mvc/empty.event.manager.js');
 
 /**
  * @class PageTabsEventManager
- * @type {module.PageTabsEventManager}
+ * @type {PageTabsEventManager}
  */
-module.exports = class PageTabsEventManager extends EmptyEventManager {
+export class PageTabsEventManager extends EmptyEventManager {
 
   /**
    * @constructor

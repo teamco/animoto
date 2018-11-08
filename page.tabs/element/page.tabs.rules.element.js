@@ -7,16 +7,16 @@
 
 /**
  * @constant EmptyRulesElement
- * @type {module.EmptyRulesElement}
+ * @type {EmptyRulesElement}
  */
 const EmptyRulesElement = require('../../empty/element/empty.rules.element.js');
 
 /**
  * @class PageTabsRulesElement
  * @extends EmptyRulesElement
- * @type {module.PageTabsRulesElement}
+ * @type {PageTabsRulesElement}
  */
-module.exports = class PageTabsRulesElement extends EmptyRulesElement {
+export class PageTabsRulesElement extends EmptyRulesElement {
 
   /**
    * @constructor

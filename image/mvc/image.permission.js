@@ -8,21 +8,21 @@
 
 /**
  * @constant EmptyPermission
- * @type {module.EmptyPermission|*}
+ * @type {EmptyPermission|*}
  */
 const EmptyPermission = require('../../empty/mvc/empty.permission.js');
 
 /**
  * @class ImagePermission
  * @extends EmptyPermission
- * @type {module.ImagePermission}
+ * @type {ImagePermission}
  */
-module.exports = class ImagePermission extends EmptyPermission {
+export class ImagePermission extends EmptyPermission {
 
   /**
    * @constructor
    * @param {string} [name]
-   * @param {module.Image} scope
+   * @param {Image} scope
    */
   constructor(name, scope) {
     super(name || 'ImagePermission', scope, false);

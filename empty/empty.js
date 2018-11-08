@@ -5,21 +5,26 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant AntHill
- * @type {module.AntHill}
- */
-const AntHill = require('../../../core/config/anthill.js');
+import './empty.css';
+import './images/empty.png';
+
+import {AntHill} from '../../../core/config/anthill';
+import {MVC} from '../../../modules/MVC';
+import {EmptyController} from './mvc/empty.controller';
+import {EmptyModel} from './mvc/empty.model';
+import {EmptyView} from './mvc/empty.view';
+import {EmptyEventManager} from './mvc/empty.event.manager';
+import {EmptyPermission} from './mvc/empty.permission';
 
 /**
  * @class Empty
  * @extends AntHill
  */
-module.exports = class Empty extends AntHill {
+export class Empty extends AntHill {
 
   /**
    * @param {string} name
-   * @param {module.Widget} containment
+   * @param {Widget} containment
    * @param opts
    * @constructor
    */
@@ -29,7 +34,7 @@ module.exports = class Empty extends AntHill {
     /**
      * Define containment
      * @property Empty
-     * @type {module.Widget}
+     * @type {Widget}
      */
     this.containment = containment;
 
@@ -83,13 +88,7 @@ module.exports = class Empty extends AntHill {
     const components = Empty.fetchComponents();
 
     /**
-     * @constant MVC
-     * @type {module.MVC}
-     */
-    const MVC = require('../../../core/lib/modules/MVC.js');
-
-    /**
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -117,37 +116,6 @@ module.exports = class Empty extends AntHill {
    * @returns {*}
    */
   static fetchComponents() {
-
-    /**
-     * @constant EmptyController
-     * @type {module.EmptyController}
-     */
-    const EmptyController = require('./mvc/empty.controller.js');
-
-    /**
-     * @constant EmptyModel
-     * @type {module.EmptyModel}
-     */
-    const EmptyModel = require('./mvc/empty.model.js');
-
-    /**
-     * @constant EmptyView
-     * @type {module.EmptyView}
-     */
-    const EmptyView = require('./mvc/empty.view.js');
-
-    /**
-     * @constant EmptyEventManager
-     * @type {module.EmptyEventManager}
-     */
-    const EmptyEventManager = require('./mvc/empty.event.manager.js');
-
-    /**
-     * @constant EmptyPermission
-     * @type {module.EmptyPermission}
-     */
-    const EmptyPermission = require('./mvc/empty.permission.js');
-
     return {
       Controller: EmptyController,
       Model: EmptyModel,
@@ -156,4 +124,4 @@ module.exports = class Empty extends AntHill {
       Permission: EmptyPermission
     };
   }
-};
+}

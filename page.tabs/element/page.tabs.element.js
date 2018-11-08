@@ -10,9 +10,9 @@ const EmptyElement = require('../../empty/element/empty.element.js');
 /**
  * @class PageTabsElement
  * @extends EmptyElement
- * @type {module.PageTabsElement}
+ * @type {PageTabsElement}
  */
-module.exports = class PageTabsElement extends EmptyElement {
+export class PageTabsElement extends EmptyElement {
 
   /**
    * @constructor
@@ -99,7 +99,7 @@ module.exports = class PageTabsElement extends EmptyElement {
   /**
    * Set page tab as current
    * @memberOf PageTabsElement
-   * @param {module.Page} page
+   * @param {Page} page
    */
   setPageTabAsCurrent(page) {
 

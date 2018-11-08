@@ -7,15 +7,15 @@
 
 /**
  * @constant Empty
- * @type {module.Empty|*}
+ * @type {Empty|*}
  */
 const Empty = require('../empty/empty.js');
 
 /**
  * @class Image
- * @type {module.Image}
+ * @type {Image}
  */
-module.exports = class Image extends Empty {
+export class Image extends Empty {
 
   /**
    * @param name
@@ -69,12 +69,12 @@ module.exports = class Image extends Empty {
 
     /**
      * @constant MVC
-     * @type {module.MVC}
+     * @type {MVC}
      */
     const MVC = require('../../../core/lib/modules/MVC.js');
 
     /**
-     * @type {module.MVC}
+     * @type {MVC}
      */
     new MVC({
       scope: this,
@@ -105,31 +105,31 @@ module.exports = class Image extends Empty {
 
     /**
      * @constant ImageController
-     * @type {module.ImageController}
+     * @type {ImageController}
      */
     const ImageController = require('./mvc/image.controller.js');
 
     /**
      * @constant ImageModel
-     * @type {module.ImageModel}
+     * @type {ImageModel}
      */
     const ImageModel = require('./mvc/image.model.js');
 
     /**
      * @constant ImageView
-     * @type {module.ImageView}
+     * @type {ImageView}
      */
     const ImageView = require('./mvc/image.view.js');
 
     /**
      * @constant ImageEventManager
-     * @type {module.ImageEventManager}
+     * @type {ImageEventManager}
      */
     const ImageEventManager = require('./mvc/image.event.manager.js');
 
     /**
      * @constant ImagePermission
-     * @type {module.ImagePermission}
+     * @type {ImagePermission}
      */
     const ImagePermission = require('./mvc/image.permission.js');
 

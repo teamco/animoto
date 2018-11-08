@@ -10,9 +10,9 @@ const EmptyElement = require('../../empty/element/empty.element.js');
 /**
  * @class ImageElement
  * @extends EmptyElement
- * @type {module.ImageElement}
+ * @type {ImageElement}
  */
-module.exports = class ImageElement extends EmptyElement {
+export class ImageElement extends EmptyElement {
 
   /**
    * @constructor

@@ -6,35 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant BaseView
- * @type {BaseView}
- */
-const BaseView = require('../../../../core/lib/modules/View.js');
-
-/**
- * @constant ContentElement
- * @type {module.EmptyElement}
- */
-const ContentElement = require('../element/empty.element.js');
-
-/**
- * @constant PreferencesElement
- * @type {module.EmptyPreferencesElement}
- */
-const PreferencesElement = require('../element/empty.preferences.element.js');
-
-/**
- * @constant RulesElement
- * @type {module.EmptyRulesElement}
- */
-const RulesElement = require('../element/empty.rules.element.js');
+import {BaseView} from '../../../../modules/View';
+import {EmptyElement} from '../element/empty.element';
+import {EmptyPreferencesElement} from '../element/empty.preferences.element';
+import {EmptyRulesElement} from '../element/empty.rules.element';
 
 /**
  * @class EmptyView
- * @type {module.EmptyView}
+ * @type {EmptyView}
  */
-module.exports = class EmptyView extends BaseView {
+export class EmptyView extends BaseView {
 
   /**
    * @constructor
@@ -42,7 +23,7 @@ module.exports = class EmptyView extends BaseView {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'EmptyView', scope, false);
+    super(name || 'EmptyView', scope);
   }
 
   /**
@@ -69,7 +50,7 @@ module.exports = class EmptyView extends BaseView {
 
     /**
      * Define $empty
-     * @type {module.EmptyElement}
+     * @type {EmptyElement}
      */
     this.elements[$content] = this.fetchElement('Content', {
       $container: this.get$container().$,
@@ -83,20 +64,20 @@ module.exports = class EmptyView extends BaseView {
   /**
    * Render Prefs
    * @memberOf EmptyView
-   * @param {module.PageDataView} dataView
+   * @param {PageDataView} dataView
    * @returns {EmptyPreferencesElement}
    */
   renderPreferences(dataView) {
 
     /**
      * @property EmptyView
-     * @type {module.PageDataView}
+     * @type {PageDataView}
      */
     this.dataView = dataView;
 
     /**
      * Define Empty Preferences Element
-     * @type {module.EmptyPreferencesElement}
+     * @type {EmptyPreferencesElement}
      */
     this.elements.$preferences = this.fetchElement('Preferences', {
       data: this.controller.getPreferences()
@@ -116,7 +97,7 @@ module.exports = class EmptyView extends BaseView {
 
     /**
      * Define Empty Rules Element
-     * @type {module.EmptyRulesElement}
+     * @type {EmptyRulesElement}
      */
     this.elements.$rules = this.fetchElement('Rules', {
       data: this.controller.getRules(),
@@ -139,9 +120,9 @@ module.exports = class EmptyView extends BaseView {
    */
   static getElements() {
     return {
-      Content: ContentElement,
-      Preferences: PreferencesElement,
-      Rules: RulesElement
+      Content: EmptyElement,
+      Preferences: EmptyPreferencesElement,
+      Rules: EmptyRulesElement
     }
   }
 
@@ -168,7 +149,7 @@ module.exports = class EmptyView extends BaseView {
 
     /**
      * @constant scope
-     * @type {module.Empty}
+     * @type {Empty}
      */
     const scope = this.scope;
     scope.observer.publish(scope.eventManager.eventList.successRendered, this.renderContent.bind(this));

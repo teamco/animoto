@@ -7,7 +7,7 @@
 
 /**
  * @constant EmptyController
- * @type {module.EmptyController|*}
+ * @type {EmptyController|*}
  */
 const EmptyController = require('../../empty/mvc/empty.controller.js');
 
@@ -15,11 +15,11 @@ const EmptyController = require('../../empty/mvc/empty.controller.js');
  * @class ImageController
  * @extends EmptyController
  */
-module.exports = class ImageController extends EmptyController {
+export class ImageController extends EmptyController {
 
   /**
    * @param {string} [name]
-   * @param {module.Image} scope
+   * @param {Image} scope
    * @constructor
    */
   constructor(name, scope) {

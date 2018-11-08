@@ -8,21 +8,21 @@
 
 /**
  * @constant EmptyPermission
- * @type {module.EmptyPermission|*}
+ * @type {EmptyPermission|*}
  */
 const EmptyPermission = require('../../empty/mvc/empty.permission.js');
 
 /**
  * @class PageTabsPermission
  * @extends EmptyPermission
- * @type {module.PageTabsPermission}
+ * @type {PageTabsPermission}
  */
-module.exports = class PageTabsPermission extends EmptyPermission {
+export class PageTabsPermission extends EmptyPermission {
 
   /**
    * @constructor
    * @param {string} [name]
-   * @param {module.PageTabs} scope
+   * @param {PageTabs} scope
    */
   constructor(name, scope) {
     super(name || 'PageTabsPermission', scope, false);
