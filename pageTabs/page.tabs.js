@@ -5,59 +5,37 @@
  * Time: 11:02 AM
  */
 
+import './page.tabs.css';
+import './images/page.tabs.png';
+
+import {Empty} from '../empty/empty';
 import {MVC} from '../../../modules/MVC';
-import {EmptyController} from './mvc/empty.controller';
-import {EmptyModel} from './mvc/empty.model';
-import {EmptyView} from './mvc/empty.view';
-import {EmptyEventManager} from './mvc/empty.event.manager';
-import {EmptyPermission} from './mvc/empty.permission';
 
 /**
- * @constant AntHill
- * @type {AntHill}
+ * @class PageTabs
+ * @type {PageTabs}
+ * @extends Empty
  */
-const AntHill = require('../../../core/config/anthill.js');
-
-/**
- * @class Empty
- * @extends AntHill
- */
-export class Empty extends AntHill {
+export class PageTabs extends Empty {
 
   /**
-   * @param {string} name
-   * @param {Widget} containment
-   * @param opts
+   * @param name
+   * @param containment
+   * @param [opts]
    * @constructor
    */
   constructor(name, containment, opts) {
-    super(name || 'Empty', null, true);
-
-    /**
-     * Define containment
-     * @property Empty
-     * @type {Widget}
-     */
-    this.containment = containment;
-
-    /**
-     * Define referrer
-     * @property Empty
-     * @type {*}
-     */
-    this.referrer = undefined;
-
-    this.initContent(opts);
+    super(name || 'PageTabs', containment, opts);
   };
 
   /**
-   * @memberOf Empty
+   * @memberOf PageTabs
    * @param opts
    */
   initContent(opts) {
 
     /**
-     * @constant DEFAULTS
+     * Define defaults
      * @type {{
      *  plugin: boolean,
      *  html: {
@@ -71,7 +49,7 @@ export class Empty extends AntHill {
     const DEFAULTS = {
       plugin: true,
       html: {
-        style: 'default',
+        style: 'red',
         header: false,
         footer: false,
         padding: {
@@ -87,7 +65,7 @@ export class Empty extends AntHill {
      * @constant components
      * @type {{Controller, Model, View, EventManager, Permission}}
      */
-    const components = Empty.fetchComponents();
+    const components = PageTabs.fetchComponents();
 
     /**
      * @type {MVC}
@@ -109,21 +87,28 @@ export class Empty extends AntHill {
     });
 
     this.observer.publish(this.eventManager.eventList.initWidget, opts);
+    this.observer.batchPublish(
+        this.eventManager.eventList.subscribeOrderPagesEvent,
+        this.eventManager.eventList.subscribeAfterSwitchPageEvent,
+        this.eventManager.eventList.subscribeCreatePageEvent,
+        this.eventManager.eventList.subscribeDestroyPageEvent,
+        this.eventManager.eventList.subscribeChangePageTitleEvent
+    );
   }
 
   /**
    * @method init
-   * @memberOf Empty
+   * @memberOf PageTabs
    * @static
    * @returns {*}
    */
   static fetchComponents() {
     return {
-      Controller: EmptyController,
-      Model: EmptyModel,
-      View: EmptyView,
-      EventManager: EmptyEventManager,
-      Permission: EmptyPermission
+      Controller: PageTabsController,
+      Model: PageTabsModel,
+      View: PageTabsView,
+      EventManager: PageTabsEventManager,
+      Permission: PageTabsPermission
     };
   }
 }

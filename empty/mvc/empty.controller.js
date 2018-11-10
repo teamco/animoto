@@ -7,7 +7,7 @@
 
 /**
  * @constant WidgetContentController
- * @type {module.WidgetContentController|*}
+ * @type {WidgetContentController|*}
  */
 const WidgetContentController = require('../../widget.content.controller.js');
 
@@ -15,7 +15,7 @@ const WidgetContentController = require('../../widget.content.controller.js');
  * @class EmptyController
  * @extends WidgetContentController
  */
-module.exports = class EmptyController extends WidgetContentController {
+export class EmptyController extends WidgetContentController {
 
   /**
    * @param {string} [name]

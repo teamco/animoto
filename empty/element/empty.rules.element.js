@@ -5,30 +5,20 @@
  * Time: 11:48 AM
  */
 
+import {PluginElement} from '../../../plugin.element';
+import {BaseRules} from '../../../rules/widget/rules';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../../plugin.element.js');
-
-/**
- * @constant BaseWidgetRules
- * @type {module.BaseWidgetRules}
- */
-const BaseWidgetRules = require('../../../rules/widget/widget.base.rules.js');
+const aggregation = require('../../../../lib/extends/aggregation');
 
 /**
  * @class EmptyRulesElement
- * @extends {PluginElement, BaseWidgetRules}
- * @type {module.EmptyRulesElement}
+ * @extends {PluginElement, BaseRules}
  */
-module.exports = class EmptyRulesElement extends aggregation(PluginElement, BaseWidgetRules) {
+export class EmptyRulesElement extends aggregation(PluginElement, BaseRules) {
 
   /**
    * @constructor
@@ -41,4 +31,4 @@ module.exports = class EmptyRulesElement extends aggregation(PluginElement, Base
     this._config(view, opts, $('<div />')).build(opts);
     this.renderBaseRulesData(opts.data, opts.rules.widget, opts.rules.content);
   }
-};
+}

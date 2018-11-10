@@ -8,16 +8,16 @@
 
 /**
  * @constant WidgetContentModel
- * @type {module.WidgetContentModel}
+ * @type {WidgetContentModel}
  */
 const WidgetContentModel = require('../../widget.content.model.js');
 
 /**
  * @class EmptyModel
  * @extends WidgetContentModel
- * @type {module.EmptyModel}
+ * @type {emptyModel}
  */
-module.exports = class EmptyModel extends WidgetContentModel {
+export class EmptyModel extends WidgetContentModel {
 
   /**
    * @constructor

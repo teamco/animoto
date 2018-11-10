@@ -5,18 +5,14 @@
  * Time: 1:09 AM
  */
 
-/**
- * @constant BaseModel
- * @type {module.BaseModel}
- */
-const BaseModel = require('../../core/lib/modules/Model.js');
+import {BaseModel} from '../../modules/Model';
 
 /**
  * @constant WidgetContentModel
- * @type {module.WidgetContentModel}
+ * @type {WidgetContentModel}
  * @extends BaseModel
  */
-module.exports = class WidgetContentModel extends BaseModel {
+export class WidgetContentModel extends BaseModel {
 
   /**
    * @param {string} [name]
@@ -24,7 +20,7 @@ module.exports = class WidgetContentModel extends BaseModel {
    * @constructor
    */
   constructor(name, scope) {
-    super(name || 'WidgetContentModel', scope, false);
+    super(name || 'WidgetContentModel', scope);
   }
 
   /**
@@ -215,4 +211,4 @@ module.exports = class WidgetContentModel extends BaseModel {
       }
     };
   }
-};
+}

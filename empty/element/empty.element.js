@@ -7,16 +7,15 @@
 
 /**
  * @constant PluginElement
- * @type {module.PluginElement}
+ * @type {PluginElement}
  */
 const PluginElement = require('../../../plugin.element.js');
 
 /**
  * @class EmptyElement
  * @extends PluginElement
- * @type {module.EmptyElement}
  */
-module.exports = class EmptyElement extends PluginElement {
+export class EmptyElement extends PluginElement {
 
   /**
    * @param {string} [name]

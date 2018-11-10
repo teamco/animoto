@@ -8,19 +8,19 @@
 import {EmptyRulesElement} from '../../empty/element/empty.rules.element';
 
 /**
- * @class ImageRulesElement
+ * @class PageTabsRulesElement
  * @extends EmptyRulesElement
- * @type {ImageRulesElement}
+ * @type {PageTabsRulesElement}
  */
-export class ImageRulesElement extends EmptyRulesElement {
+export class PageTabsRulesElement extends EmptyRulesElement {
 
   /**
    * @constructor
    * @param {string} [name]
-   * @param {ImageView} view
+   * @param {PageTabsView} view
    * @param opts
    */
   constructor(name, view, opts) {
-    super(name || 'ImageRulesElement', view, opts);
+    super(name || 'PageTabsRulesElement', view, opts);
   }
 }

@@ -9,18 +9,18 @@
 import {EmptyPermission} from '../../empty/mvc/empty.permission';
 
 /**
- * @class ImagePermission
+ * @class PageTabsPermission
  * @extends EmptyPermission
- * @type {ImagePermission}
+ * @type {PageTabsPermission}
  */
-export class ImagePermission extends EmptyPermission {
+export class PageTabsPermission extends EmptyPermission {
 
   /**
    * @constructor
    * @param {string} [name]
-   * @param {Image} scope
+   * @param {PageTabs} scope
    */
   constructor(name, scope) {
-    super(name || 'ImagePermission', scope);
+    super(name || 'PageTabsPermission', scope);
   }
 }

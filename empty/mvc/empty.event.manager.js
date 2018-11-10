@@ -8,15 +8,15 @@
 
 /**
  * @constant WidgetContentEventManager
- * @type {module.WidgetContentEventManager|*}
+ * @type {WidgetContentEventManager|*}
  */
 const WidgetContentEventManager = require('../../widget.content.event.manager.js');
 
 /**
  * @class EmptyEventManager
- * @type {module.EmptyEventManager}
+ * @type {emptyEventManager}
  */
-module.exports = class EmptyEventManager extends WidgetContentEventManager {
+export class EmptyEventManager extends WidgetContentEventManager {
 
   /**
    * @constructor

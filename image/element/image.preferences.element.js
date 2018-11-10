@@ -5,18 +5,14 @@
  * Time: 11:48 AM
  */
 
-/**
- * @constant EmptyPreferencesElement
- * @type {module.EmptyPreferencesElement}
- */
-const EmptyPreferencesElement = require('../../empty/element/empty.preferences.element.js');
+import {EmptyPreferencesElement} from '../../empty/element/empty.preferences.element';
 
 /**
  * @class ImagePreferencesElement
  * @extends EmptyPreferencesElement
- * @type {module.ImagePreferencesElement}
+ * @type {ImagePreferencesElement}
  */
-module.exports = class ImagePreferencesElement extends EmptyPreferencesElement {
+export class ImagePreferencesElement extends EmptyPreferencesElement {
 
   /**
    * @constructor
@@ -71,4 +67,4 @@ module.exports = class ImagePreferencesElement extends EmptyPreferencesElement {
 
     $item[callback]($img, target.value);
   }
-};
+}

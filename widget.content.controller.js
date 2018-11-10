@@ -5,41 +5,22 @@
  * Time: 11:46 PM
  */
 
+import {PluginController} from '../plugin.controller';
+import {PreferencesController} from '../preferences/preferences.controller';
+import {WidgetContentPreferencesController} from '../preferences/widget.content.preferences.controller';
+import {WidgetContentControllerRules} from '../rules/widget/widget.content.controller.rules';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PreferencesController
- * @type {module.PreferencesController}
- */
-const PreferencesController = require('../preferences/preferences.controller.js');
-
-/**
- * @constant WidgetContentPreferencesController
- * @type {module.WidgetContentPreferencesController}
- */
-const WidgetContentPreferencesController = require('../preferences/widget.content.preferences.controller.js');
-
-/**
- * @constant WidgetContentControllerRules
- * @type {module.WidgetContentControllerRules}
- */
-const WidgetContentControllerRules = require('../rules/widget/widget.content.controller.rules.js');
-
-/**
- * @constant PluginController
- * @type {module.PluginController|*}
- */
-const PluginController = require('../plugin.controller.js');
+const aggregation = require('../../lib/extends/aggregation');
 
 /**
  * @class WidgetContentController
  * @extends {PreferencesController, WidgetContentPreferencesController, WidgetContentControllerRules, BaseController}
  */
-module.exports = class WidgetContentController extends aggregation(PluginController, PreferencesController,
+export class WidgetContentController extends aggregation(PluginController, PreferencesController,
     WidgetContentPreferencesController, WidgetContentControllerRules) {
 
   /**
@@ -60,7 +41,7 @@ module.exports = class WidgetContentController extends aggregation(PluginControl
 
     /**
      * Define observer
-     * @type {module.Observer|{batchPublish, publish}}
+     * @type {Observer|{batchPublish, publish}}
      */
     const observer = this.observer;
 
@@ -172,7 +153,7 @@ module.exports = class WidgetContentController extends aggregation(PluginControl
 
     for (let index in prefs) {
       if (prefs.hasOwnProperty(index)) {
-        this.observer.publish(this.eventManager.eventList.alternativeSavePreferences, 
+        this.observer.publish(this.eventManager.eventList.alternativeSavePreferences,
             [index, prefs[index].value, false]);
       }
     }
@@ -291,7 +272,8 @@ module.exports = class WidgetContentController extends aggregation(PluginControl
       const widgetsList = gallery.model.getDataProvider();
 
       // Get widgets list
-      prefs.metamorphicType.list = $.map(widgetsList, widget => {
+      prefs.metamorphicType.list = $.map(widgetsList,
+          widget => {
             if (widget.resource !== 'metamorphic' && !widget.is_external) {
               return {
                 resource: widget.resource,
@@ -395,4 +377,4 @@ module.exports = class WidgetContentController extends aggregation(PluginControl
   transferStatistics(uuid, $element) {
     this.logger.debug('Transfer Stats', uuid, $element);
   }
-};
+}

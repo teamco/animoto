@@ -5,22 +5,19 @@
  * Time: 11:06 PM
  * To change this template use File | Settings | File Templates.
  */
-/**
- * @constant EmptyModel
- * @type {module.EmptyModel}
- */
-const EmptyModel = require('../../empty/mvc/empty.model.js');
+
+import {EmptyModel} from '../../empty/mvc/empty.model';
 
 /**
  * @class PageTabsModel
- * @type {module.ImageModel}
+ * @type {ImageModel}
  */
-module.exports = class ImageModel extends EmptyModel {
+export class ImageModel extends EmptyModel {
 
   /**
    * @constructor
    * @param {string} name
-   * @param {module.Image} scope
+   * @param {Image} scope
    */
   constructor(name, scope) {
     super(name || 'ImageModel', scope, false);
@@ -525,4 +522,4 @@ module.exports = class ImageModel extends EmptyModel {
   setImageDropShadow(shadow) {
     this.setPrefs('imageDropShadow', shadow);
   }
-};
+}

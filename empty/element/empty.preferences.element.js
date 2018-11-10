@@ -5,30 +5,20 @@
  * Time: 11:48 AM
  */
 
+import {PluginElement} from '../../../plugin.element';
+import {WidgetPreferences} from '../../../preferences/widget.preferences';
+
 /**
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../../core/lib/extends/aggregation.js');
-
-/**
- * @constant PluginElement
- * @type {module.PluginElement}
- */
-const PluginElement = require('../../../plugin.element.js');
-
-/**
- * @constant WidgetPreferences
- * @type {module.WidgetPreferences}
- */
-const WidgetPreferences = require('../../../preferences/widget.preferences.js');
+const aggregation = require('../../../../lib/extends/aggregation');
 
 /**
  * @class EmptyPreferencesElement
  * @extends {PluginElement, WidgetPreferences}
- * @type {module.EmptyPreferencesElement}
  */
-module.exports = class EmptyPreferencesElement extends aggregation(PluginElement, WidgetPreferences) {
+export class EmptyPreferencesElement extends aggregation(PluginElement, WidgetPreferences) {
 
   /**
    * @constructor
@@ -41,4 +31,4 @@ module.exports = class EmptyPreferencesElement extends aggregation(PluginElement
     this._config(view, opts, $('<div />')).build(opts);
     this.renderBasePrefsData(opts.data);
   }
-};
+}

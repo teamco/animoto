@@ -6,29 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant EmptyEventManager
- * @type {module.EmptyEventManager}
- */
-const EmptyEventManager = require('../../empty/mvc/empty.event.manager.js');
+import {EmptyEventManager} from '../../empty/mvc/empty.event.manager';
 
 /**
  * @class PageTabsEventManager
- * @type {module.ImageEventManager}
+ * @type {ImageEventManager}
  */
-module.exports = class ImageEventManager extends EmptyEventManager {
+export class ImageEventManager extends EmptyEventManager {
 
   /**
    * @constructor
    * @param {string} name
-   * @param {module.Image} scope
+   * @param {Image} scope
    */
   constructor(name, scope) {
-    super(name || 'ImageEventManager', scope, false);
+    super(name || 'ImageEventManager', scope);
 
     this.updateEventList({
       checkEmbeddedContent: 'check.embedded.content',
       splitEmbeddedContent: 'split.embedded.content'
     });
   };
-};
+}
