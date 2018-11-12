@@ -6,29 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant EmptyView
- * @type {EmptyView}
- */
-const EmptyView = require('../../empty/mvc/empty.view.js');
-
-/**
- * @constant ContentElement
- * @type {ImageElement}
- */
-const ContentElement = require('../element/image.element.js');
-
-/**
- * @constant PreferencesElement
- * @type {ImagePreferencesElement}
- */
-const PreferencesElement = require('../element/image.preferences.element.js');
-
-/**
- * @constant RulesElement
- * @type {ImageRulesElement}
- */
-const RulesElement = require('../element/image.rules.element.js');
+import {EmptyView} from '../../empty/mvc/empty.view';
+import {ImageElement} from '../element/image.element';
+import {ImagePreferencesElement} from '../element/image.preferences.element';
+import {ImageRulesElement} from '../element/image.rules.element';
 
 /**
  * @class ImageView
@@ -43,22 +24,22 @@ export class ImageView extends EmptyView {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'ImageView', scope, false);
+    super(name || 'ImageView', scope);
   }
 
   /**
    * @memberOf ImageView
    * @return {{
-   *  Content: module.ImageElement,
-   *  Preferences: module.ImagePreferencesElement,
-   *  Rules: module.ImageRulesElement
+   *  Content: ImageElement,
+   *  Preferences: ImagePreferencesElement,
+   *  Rules: ImageRulesElement
    * }}
    */
   static getElements() {
     return {
-      Content: ContentElement,
-      Preferences: PreferencesElement,
-      Rules: RulesElement
+      Content: ImageElement,
+      Preferences: ImagePreferencesElement,
+      Rules: ImageRulesElement
     };
   }
 };

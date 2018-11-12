@@ -14,7 +14,7 @@ import {WidgetContentControllerRules} from '../rules/widget/widget.content.contr
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../lib/extends/aggregation');
+const aggregation = require('../../lib/extends/aggregation');
 
 /**
  * @class WidgetContentController
@@ -153,7 +153,7 @@ export class WidgetContentController extends aggregation(PluginController, Prefe
 
     for (let index in prefs) {
       if (prefs.hasOwnProperty(index)) {
-        this.observer.publish(this.eventManager.eventList.alternativeSavePreferences, 
+        this.observer.publish(this.eventManager.eventList.alternativeSavePreferences,
             [index, prefs[index].value, false]);
       }
     }
@@ -272,7 +272,8 @@ export class WidgetContentController extends aggregation(PluginController, Prefe
       const widgetsList = gallery.model.getDataProvider();
 
       // Get widgets list
-      prefs.metamorphicType.list = $.map(widgetsList, widget => {
+      prefs.metamorphicType.list = $.map(widgetsList,
+          widget => {
             if (widget.resource !== 'metamorphic' && !widget.is_external) {
               return {
                 resource: widget.resource,

@@ -5,7 +5,11 @@
  * Time: 11:03 AM
  */
 
-import {WidgetContentController} from '../../widget.content.controller';
+/**
+ * @constant WidgetContentController
+ * @type {WidgetContentController|*}
+ */
+const WidgetContentController = require('../../widget.content.controller.js');
 
 /**
  * @class EmptyController
@@ -19,7 +23,7 @@ export class EmptyController extends WidgetContentController {
    * @constructor
    */
   constructor(name, scope) {
-    super(name || 'EmptyController', scope);
+    super(name || 'EmptyController', scope, false);
   }
 
   /**
@@ -50,4 +54,4 @@ export class EmptyController extends WidgetContentController {
 
     scope.observer.publish(scope.eventManager.eventList.publishRule, [$button.attr('value'), scope.name]);
   }
-}
+};

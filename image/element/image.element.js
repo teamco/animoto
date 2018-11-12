@@ -5,7 +5,7 @@
  * Time: 11:48 AM
  */
 
-const EmptyElement = require('../../empty/element/empty.element.js');
+import {EmptyElement} from '../../empty/element/empty.element';
 
 /**
  * @class ImageElement
@@ -84,7 +84,7 @@ export class ImageElement extends EmptyElement {
   /**
    * Render Embedded content
    * @memberOf ImageElement
-   * @param {{repeatX, repeatY, text, stretch}} opts
+   * @param {{repeatX, repeatY, text, stretch, [url]}} opts
    */
   renderEmbeddedContent(opts) {
     if (!opts.url) {
@@ -191,7 +191,7 @@ export class ImageElement extends EmptyElement {
     /**
      * Load image
      * @constant img
-     * @type {HTMLImageElement}
+     * @type {HTMLImageElement, {onerror}}
      */
     const img = new Image();
 
@@ -445,4 +445,4 @@ export class ImageElement extends EmptyElement {
       $img.attr({src: src});
     }
   }
-};
+}

@@ -5,11 +5,7 @@
  * Time: 11:03 AM
  */
 
-/**
- * @constant EmptyController
- * @type {EmptyController|*}
- */
-const EmptyController = require('../../empty/mvc/empty.controller.js');
+import {EmptyController} from '../../empty/mvc/empty.controller';
 
 /**
  * @class ImageController
@@ -23,7 +19,7 @@ export class ImageController extends EmptyController {
    * @constructor
    */
   constructor(name, scope) {
-    super(name || 'ImageController', scope, false);
+    super(name || 'ImageController', scope);
   }
 
   /**
@@ -117,4 +113,4 @@ export class ImageController extends EmptyController {
       $preferences.updatePreviewImage($modal, event);
     }
   }
-};
+}

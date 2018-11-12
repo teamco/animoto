@@ -17,7 +17,6 @@ const aggregation = require('../../../../lib/extends/aggregation');
 /**
  * @class EmptyPreferencesElement
  * @extends {PluginElement, WidgetPreferences}
- * @type {EmptyPreferencesElement}
  */
 export class EmptyPreferencesElement extends aggregation(PluginElement, WidgetPreferences) {
 

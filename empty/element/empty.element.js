@@ -5,12 +5,15 @@
  * Time: 11:48 AM
  */
 
-import {PluginElement} from '../../../plugin.element';
+/**
+ * @constant PluginElement
+ * @type {PluginElement}
+ */
+const PluginElement = require('../../../plugin.element.js');
 
 /**
  * @class EmptyElement
  * @extends PluginElement
- * @type {EmptyElement}
  */
 export class EmptyElement extends PluginElement {
 
@@ -32,5 +35,6 @@ export class EmptyElement extends PluginElement {
    */
   configElement(view, opts) {
     this._config(view, opts, $('<content />')).build(opts);
+    this.addCSS('empty', {resource: '/widgets'});
   }
-}
+};

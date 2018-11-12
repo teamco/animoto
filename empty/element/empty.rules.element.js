@@ -12,12 +12,11 @@ import {BaseRules} from '../../../rules/widget/rules';
  * Aggregation of base class and mixin classes.
  * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
  */
-const aggregation = require('../../../../../lib/extends/aggregation');
+const aggregation = require('../../../../lib/extends/aggregation');
 
 /**
  * @class EmptyRulesElement
- * @extends {PluginElement, BaseWidgetRules}
- * @type {EmptyRulesElement}
+ * @extends {PluginElement, BaseRules}
  */
 export class EmptyRulesElement extends aggregation(PluginElement, BaseRules) {
 

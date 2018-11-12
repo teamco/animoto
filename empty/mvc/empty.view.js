@@ -13,7 +13,7 @@ import {EmptyRulesElement} from '../element/empty.rules.element';
 
 /**
  * @class EmptyView
- * @type {EmptyView}
+ * @extends BaseView
  */
 export class EmptyView extends BaseView {
 
@@ -50,7 +50,6 @@ export class EmptyView extends BaseView {
 
     /**
      * Define $empty
-     * @type {EmptyElement}
      */
     this.elements[$content] = this.fetchElement('Content', {
       $container: this.get$container().$,
@@ -77,7 +76,6 @@ export class EmptyView extends BaseView {
 
     /**
      * Define Empty Preferences Element
-     * @type {EmptyPreferencesElement}
      */
     this.elements.$preferences = this.fetchElement('Preferences', {
       data: this.controller.getPreferences()
@@ -97,7 +95,6 @@ export class EmptyView extends BaseView {
 
     /**
      * Define Empty Rules Element
-     * @type {EmptyRulesElement}
      */
     this.elements.$rules = this.fetchElement('Rules', {
       data: this.controller.getRules(),
@@ -113,9 +110,9 @@ export class EmptyView extends BaseView {
   /**
    * @memberOf EmptyView
    * @return {{
-   *  Content: module.EmptyElement,
-   *  Preferences: module.EmptyPreferencesElement,
-   *  Rules: module.EmptyRulesElement
+   *  Content: EmptyElement,
+   *  Preferences: EmptyPreferencesElement,
+   *  Rules: EmptyRulesElement
    * }}
    */
   static getElements() {
@@ -154,4 +151,4 @@ export class EmptyView extends BaseView {
     const scope = this.scope;
     scope.observer.publish(scope.eventManager.eventList.successRendered, this.renderContent.bind(this));
   }
-};
+}

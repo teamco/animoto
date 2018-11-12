@@ -6,12 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import {WidgetContentModel} from '../../widget.content.model';
+/**
+ * @constant WidgetContentModel
+ * @type {WidgetContentModel}
+ */
+const WidgetContentModel = require('../../widget.content.model.js');
 
 /**
  * @class EmptyModel
  * @extends WidgetContentModel
- * @type {EmptyModel}
+ * @type {emptyModel}
  */
 export class EmptyModel extends WidgetContentModel {
 
@@ -21,7 +25,7 @@ export class EmptyModel extends WidgetContentModel {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'EmptyModel', scope);
+    super(name || 'EmptyModel', scope, false);
 
     /**
      * Define preferences
@@ -35,4 +39,4 @@ export class EmptyModel extends WidgetContentModel {
      */
     this.rules = {};
   }
-}
+};

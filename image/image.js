@@ -5,15 +5,21 @@
  * Time: 11:02 AM
  */
 
-/**
- * @constant Empty
- * @type {Empty|*}
- */
-const Empty = require('../empty/empty.js');
+import './image.css';
+import './images/image.png';
+
+import {Empty} from '../empty/empty';
+import {ImageController} from './mvc/image.controller';
+import {ImageModel} from './mvc/image.model';
+import {ImageView} from './mvc/image.view';
+import {ImageEventManager} from './mvc/image.event.manager';
+import {ImagePermission} from './mvc/image.permission';
+import {MVC} from '../../../modules/MVC';
 
 /**
  * @class Image
  * @type {Image}
+ * @extends Empty
  */
 export class Image extends Empty {
 
@@ -68,12 +74,6 @@ export class Image extends Empty {
     const components = Image.fetchComponents();
 
     /**
-     * @constant MVC
-     * @type {MVC}
-     */
-    const MVC = require('../../../core/lib/modules/MVC.js');
-
-    /**
      * @type {MVC}
      */
     new MVC({
@@ -102,37 +102,6 @@ export class Image extends Empty {
    * @returns {*}
    */
   static fetchComponents() {
-
-    /**
-     * @constant ImageController
-     * @type {ImageController}
-     */
-    const ImageController = require('./mvc/image.controller.js');
-
-    /**
-     * @constant ImageModel
-     * @type {ImageModel}
-     */
-    const ImageModel = require('./mvc/image.model.js');
-
-    /**
-     * @constant ImageView
-     * @type {ImageView}
-     */
-    const ImageView = require('./mvc/image.view.js');
-
-    /**
-     * @constant ImageEventManager
-     * @type {ImageEventManager}
-     */
-    const ImageEventManager = require('./mvc/image.event.manager.js');
-
-    /**
-     * @constant ImagePermission
-     * @type {ImagePermission}
-     */
-    const ImagePermission = require('./mvc/image.permission.js');
-
     return {
       Controller: ImageController,
       Model: ImageModel,
@@ -141,4 +110,4 @@ export class Image extends Empty {
       Permission: ImagePermission
     };
   }
-};
+}
