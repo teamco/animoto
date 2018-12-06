@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-import './page.tabs.css';
+import './page.tabs.scss';
 import './images/page.tabs.png';
 
 import {Empty} from '../empty/empty';

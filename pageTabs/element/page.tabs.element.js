@@ -38,7 +38,6 @@ export class PageTabsElement extends EmptyElement {
    */
   configElement(view, opts) {
     this._config(view, opts, $('<ul class="nav nav-tabs" />')).build(opts);
-    this.addCSS('page.tabs', {resource: '/widgets'});
   }
 
   /**

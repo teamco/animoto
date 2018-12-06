@@ -6,16 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant WidgetContentModel
- * @type {WidgetContentModel}
- */
-const WidgetContentModel = require('../../widget.content.model.js');
+import {WidgetContentModel} from '../../widget.content.model';
 
 /**
  * @class EmptyModel
  * @extends WidgetContentModel
- * @type {emptyModel}
+ * @type {EmptyModel}
  */
 export class EmptyModel extends WidgetContentModel {
 

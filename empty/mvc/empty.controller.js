@@ -5,11 +5,7 @@
  * Time: 11:03 AM
  */
 
-/**
- * @constant WidgetContentController
- * @type {WidgetContentController|*}
- */
-const WidgetContentController = require('../../widget.content.controller.js');
+import {WidgetContentController} from '../../widget.content.controller';
 
 /**
  * @class EmptyController

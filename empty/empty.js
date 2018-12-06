@@ -5,18 +5,16 @@
  * Time: 11:02 AM
  */
 
+import './empty.scss';
+import './images/empty.png';
+
 import {MVC} from '../../../modules/MVC';
 import {EmptyController} from './mvc/empty.controller';
 import {EmptyModel} from './mvc/empty.model';
 import {EmptyView} from './mvc/empty.view';
 import {EmptyEventManager} from './mvc/empty.event.manager';
 import {EmptyPermission} from './mvc/empty.permission';
-
-/**
- * @constant AntHill
- * @type {AntHill}
- */
-const AntHill = require('../../../core/config/anthill.js');
+import {AntHill} from '../../../core/config/anthill';
 
 /**
  * @class Empty

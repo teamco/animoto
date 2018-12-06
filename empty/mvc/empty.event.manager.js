@@ -6,15 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/**
- * @constant WidgetContentEventManager
- * @type {WidgetContentEventManager|*}
- */
-const WidgetContentEventManager = require('../../widget.content.event.manager.js');
+import {WidgetContentEventManager} from '../../widget.content.event.manager';
 
 /**
  * @class EmptyEventManager
- * @type {emptyEventManager}
+ * @type {EmptyEventManager}
  */
 export class EmptyEventManager extends WidgetContentEventManager {
 

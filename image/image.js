@@ -5,7 +5,7 @@
  * Time: 11:02 AM
  */
 
-import './image.css';
+import './image.scss';
 import './images/image.png';
 
 import {Empty} from '../empty/empty';

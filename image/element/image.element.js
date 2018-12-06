@@ -31,7 +31,6 @@ export class ImageElement extends EmptyElement {
    */
   configElement(view, opts) {
     this._config(view, opts, $('<div />')).build(opts);
-    this.addCSS('image', {resource: '/widgets'});
 
     /**
      * Define element
