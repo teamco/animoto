@@ -10,6 +10,11 @@ import './images/page.tabs.png';
 
 import {Empty} from '../empty/empty';
 import {MVC} from '../../../modules/MVC';
+import {PageTabsController} from './mvc/page.tabs.controller';
+import {PageTabsModel} from './mvc/page.tabs.model';
+import {PageTabsView} from './mvc/page.tabs.view';
+import {PageTabsEventManager} from './mvc/page.tabs.event.manager';
+import {PageTabsPermission} from './mvc/page.tabs.permission';
 
 /**
  * @class PageTabs
