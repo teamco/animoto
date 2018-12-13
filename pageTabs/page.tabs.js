@@ -6,7 +6,7 @@
  */
 
 import './page.tabs.scss';
-import './images/page.tabs.png';
+import image from './images/page.tabs.png';
 
 import {Empty} from '../empty/empty';
 import {MVC} from '../../../modules/MVC';
@@ -31,6 +31,12 @@ export class PageTabs extends Empty {
    */
   constructor(name, containment, opts) {
     super(name || 'PageTabs', containment, opts);
+
+    /**
+     * Define image
+     * @property PageTabs
+     */
+    this.image = image;
   };
 
   /**

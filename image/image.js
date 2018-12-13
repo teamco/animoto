@@ -6,7 +6,7 @@
  */
 
 import './image.scss';
-import './images/image.png';
+import image from './images/image.png';
 
 import {Empty} from '../empty/empty';
 import {ImageController} from './mvc/image.controller';
@@ -31,6 +31,12 @@ export class Image extends Empty {
    */
   constructor(name, containment, opts) {
     super(name || 'Image', containment, opts);
+
+    /**
+     * Define image
+     * @property Image
+     */
+    this.image = image;
   };
 
   /**

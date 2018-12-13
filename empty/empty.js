@@ -6,7 +6,7 @@
  */
 
 import './empty.scss';
-import './images/empty.png';
+import image from './images/empty.png';
 
 import {MVC} from '../../../modules/MVC';
 import {EmptyController} from './mvc/empty.controller';
@@ -37,6 +37,12 @@ export class Empty extends AntHill {
      * @type {Widget}
      */
     this.containment = containment;
+
+    /**
+     * Define image
+     * @property Empty
+     */
+    this.image = image;
 
     /**
      * Define referrer
