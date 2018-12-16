@@ -42,4 +42,4 @@ export class ImageView extends EmptyView {
       Rules: ImageRulesElement
     };
   }
-};
+}
