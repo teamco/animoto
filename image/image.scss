@@ -14,14 +14,38 @@
 }
 
 .modal {
+  .image-prefs {
+    &.range {
+      width: 10rem;
+    }
+
+    .w-16,
+    input[type="range"] {
+      width: 16rem;
+    }
+
+    .input-group-text {
+      &.sm-input {
+        min-width: 3.5rem;
+      }
+
+      &.lg-input {
+        min-width: 8rem;
+        max-width: 8rem;
+      }
+    }
+  }
+
   .image-preview {
-    width: 210px;
+    width: 40%;
     border: 5px solid #fff;
     margin-left: 10px;
     margin-top: 5px;
     display: none;
     transform-origin: center;
     z-index: 1;
-    position: relative;
+    position: absolute;
+    left: 50%;
+    top: 180px;
   }
 }
