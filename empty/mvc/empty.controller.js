@@ -19,7 +19,7 @@ export class EmptyController extends WidgetContentController {
    * @constructor
    */
   constructor(name, scope) {
-    super(name || 'EmptyController', scope, false);
+    super(name || 'EmptyController', scope);
   }
 
   /**
@@ -50,4 +50,4 @@ export class EmptyController extends WidgetContentController {
 
     scope.observer.publish(scope.eventManager.eventList.publishRule, [$button.attr('value'), scope.name]);
   }
-};
+}
