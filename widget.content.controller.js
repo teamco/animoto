@@ -9,6 +9,7 @@ import {PluginController} from '../plugin.controller';
 import {PreferencesController} from '../preferences/preferences.controller';
 import {WidgetContentPreferencesController} from '../preferences/widget.content.preferences.controller';
 import {WidgetContentControllerRules} from '../rules/widget/widget.content.controller.rules';
+import {WidgetSubscribe} from '../rules/widget/widget.subscribe';
 
 /**
  * Aggregation of base class and mixin classes.
@@ -30,6 +31,12 @@ export class WidgetContentController extends aggregation(PluginController, Prefe
    */
   constructor(name, scope) {
     super(name || 'WidgetContentController', scope, false);
+
+    /**
+     * @property WidgetContentController
+     * @type {WidgetSubscribe}
+     */
+    this.simulator = new WidgetSubscribe();
   }
 
   /**
