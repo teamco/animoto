@@ -6,8 +6,6 @@
  */
 
 import {PluginController} from '../plugin.controller';
-import {PreferencesController} from '../preferences/preferences.controller';
-import {WidgetContentPreferencesController} from '../preferences/widget.content.preferences.controller';
 import {WidgetContentControllerRules} from '../rules/widget/widget.content.controller.rules';
 import {WidgetSubscribe} from '../rules/widget/widget.subscribe';
 
@@ -19,10 +17,10 @@ const aggregation = require('../../lib/extends/aggregation');
 
 /**
  * @class WidgetContentController
- * @extends {PreferencesController, WidgetContentPreferencesController, WidgetContentControllerRules, BaseController}
+ * @extends {WidgetContentControllerRules, BaseController}
  */
-export class WidgetContentController extends aggregation(PluginController, PreferencesController,
-    WidgetContentPreferencesController, WidgetContentControllerRules) {
+export class WidgetContentController extends aggregation(PluginController, WidgetContentPreferencesController,
+    WidgetContentControllerRules) {
 
   /**
    * @param {string} [name]
@@ -141,7 +139,7 @@ export class WidgetContentController extends aggregation(PluginController, Prefe
   alternativeSavePreferences(key, value, save) {
 
     // Define save
-    save = typeof(save) === undefined ? true : save;
+    save = typeof (save) === undefined ? true : save;
 
     // Transfer prefs to widget
     this.observer.publish(this.eventManager.eventList.transferContentPreferences, [key, value]);
@@ -259,7 +257,7 @@ export class WidgetContentController extends aggregation(PluginController, Prefe
 
     /**
      * Get scope
-     * @type {Metamorphic|{name}}
+     * @type {Metamorphic|{name, referrer}}
      */
     const scope = this.scope;
 
@@ -279,17 +277,16 @@ export class WidgetContentController extends aggregation(PluginController, Prefe
       const widgetsList = gallery.model.getDataProvider();
 
       // Get widgets list
-      prefs.metamorphicType.list = $.map(widgetsList,
-          widget => {
-            if (widget.resource !== 'metamorphic' && !widget.is_external) {
-              return {
-                resource: widget.resource,
-                name: widget.name,
-                description: widget.description,
-                tooltip: true
-              };
-            }
-          });
+      prefs.metamorphicType.list = $.map(widgetsList, widget => {
+        if (widget.resource !== 'metamorphic' && !widget.is_external) {
+          return {
+            resource: widget.resource,
+            name: widget.name,
+            description: widget.description,
+            tooltip: true
+          };
+        }
+      });
 
     } catch (e) {
       scope.logger.warn('Unable to fetch gallery widgets', e);
