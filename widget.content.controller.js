@@ -19,7 +19,7 @@ const aggregation = require('../../lib/extends/aggregation');
  * @class WidgetContentController
  * @extends {WidgetContentControllerRules, BaseController}
  */
-export class WidgetContentController extends aggregation(PluginController, WidgetContentPreferencesController,
+export class WidgetContentController extends aggregation(PluginController/*WidgetContentPreferencesController*/,
     WidgetContentControllerRules) {
 
   /**
