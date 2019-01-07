@@ -8,18 +8,14 @@
 import {PluginController} from '../plugin.controller';
 import {WidgetContentControllerRules} from '../rules/widget/widget.content.controller.rules';
 import {WidgetSubscribe} from '../rules/widget/widget.subscribe';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../lib/extends/aggregation');
+import {WidgetContentPreferencesController} from '../preferences/widget.content.preferences.controller';
+import {aggregation} from '../../lib/extends/aggregation';
 
 /**
  * @class WidgetContentController
  * @extends {WidgetContentControllerRules, BaseController}
  */
-export class WidgetContentController extends aggregation(PluginController/*WidgetContentPreferencesController*/,
+export class WidgetContentController extends aggregation(PluginController, WidgetContentPreferencesController,
     WidgetContentControllerRules) {
 
   /**
