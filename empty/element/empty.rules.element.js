@@ -7,12 +7,7 @@
 
 import {PluginElement} from '../../../plugin.element';
 import {BaseRules} from '../../../rules/widget/rules';
-
-/**
- * Aggregation of base class and mixin classes.
- * @type {(function(*, ...[*]): __Aggregate)|*|(function(): aggregate)}
- */
-const aggregation = require('../../../../lib/extends/aggregation');
+import {aggregation} from '../../../../lib/extends/aggregation';
 
 /**
  * @class EmptyRulesElement
