@@ -37,15 +37,22 @@
   }
 
   .image-preview {
-    width: 40%;
-    border: 5px solid #fff;
-    margin-left: 10px;
-    margin-top: 5px;
-    display: none;
-    transform-origin: center;
+    max-width: 45%;
+    max-height: 50%;
+    overflow: hidden;
     z-index: 1;
     position: absolute;
     left: 50%;
     top: 180px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border: 5px solid #dfdfdf;
+    padding: 5px;
+
+    img {
+      width: 100%;
+      display: none;
+      transform-origin: center;
+    }
   }
 }

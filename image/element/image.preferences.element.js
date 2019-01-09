@@ -33,7 +33,7 @@ export class ImagePreferencesElement extends EmptyPreferencesElement {
 
     // Get image prefs container
     const $container = $('#content', this.$);
-    $container.append('<img class="image-preview" />');
+    $container.append('<div class="image-preview"><img src="" alt="Image preview" /></div>');
 
     // Update image
     const $url = $('textarea[name="imageUrl"]', $container);
@@ -47,7 +47,7 @@ export class ImagePreferencesElement extends EmptyPreferencesElement {
    * @param event
    */
   updatePreviewImage($modal, event) {
-    const $img = $('img.image-preview', $modal.$),
+    const $img = $('div.image-preview img', $modal.$),
         target = event.target,
         view = this.view,
         $item = view.get$item();
