@@ -44,10 +44,6 @@ export class EmptyView extends BaseView {
      */
     const $content = '$' + name.toLowerCase();
 
-    if (this.isCached($content, this.constructor.getElements()['Content'])) {
-      return false;
-    }
-
     /**
      * Define $empty
      */

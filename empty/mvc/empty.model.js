@@ -21,7 +21,7 @@ export class EmptyModel extends WidgetContentModel {
    * @param scope
    */
   constructor(name, scope) {
-    super(name || 'EmptyModel', scope, false);
+    super(name || 'EmptyModel', scope);
 
     /**
      * Define preferences

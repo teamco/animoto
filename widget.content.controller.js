@@ -8,14 +8,15 @@
 import {PluginController} from '../plugin.controller';
 import {WidgetContentControllerRules} from '../rules/widget/widget.content.controller.rules';
 import {WidgetSubscribe} from '../rules/widget/widget.subscribe';
+import {BasePreferences} from '../../modules/Preferences';
 import {WidgetContentPreferencesController} from '../preferences/widget.content.preferences.controller';
 import {aggregation} from '../../lib/extends/aggregation';
 
 /**
  * @class WidgetContentController
- * @extends {WidgetContentControllerRules, BaseController}
+ * @extends {PluginController, BasePreferences, WidgetContentPreferencesController, WidgetContentControllerRules}
  */
-export class WidgetContentController extends aggregation(PluginController, WidgetContentPreferencesController,
+export class WidgetContentController extends aggregation(PluginController, BasePreferences, WidgetContentPreferencesController,
     WidgetContentControllerRules) {
 
   /**

@@ -20,7 +20,7 @@ export class EmptyEventManager extends WidgetContentEventManager {
    * @param {Empty} scope
    */
   constructor(name, scope) {
-    super(name || 'EmptyEventManager', scope, false);
+    super(name || 'EmptyEventManager', scope);
     this.updateEventList({});
   }
 };
