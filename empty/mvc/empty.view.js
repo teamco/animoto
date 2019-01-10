@@ -42,14 +42,14 @@ export class EmptyView extends BaseView {
      * @constant $content
      * @type {string}
      */
-    const $content = '$' + name.toLowerCase();
+    const $content = `$${name.toLowerCase()}`;
 
     /**
      * Define $empty
      */
     this.elements[$content] = this.fetchElement('Content', {
       $container: this.get$container().$,
-      style: name.toDash() + '-container'
+      style: `${name.toDash()}-container`
     });
 
     this.footer(this.get$container());

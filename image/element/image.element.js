@@ -73,7 +73,7 @@ export class ImageElement extends EmptyElement {
       return false;
     }
     this.$.css({
-      backgroundImage: 'url(\'' + opts.url + '\')',
+      backgroundImage: `url('${opts.url}')`,
       backgroundRepeat: repeat,
       backgroundSize: opts.stretch ? 'cover' : 'auto'
     });
@@ -143,7 +143,7 @@ export class ImageElement extends EmptyElement {
           const callback = this[index];
 
           typeof callback === 'function' ?
-              callback.bind(this)($img, opts[index]) :
+              callback.call(this, $img, opts[index]) :
               this.view.scope.logger.warn('Undefined callback', index);
         }
       }
