@@ -37,17 +37,17 @@ export class EmptyController extends WidgetContentController {
   addContentRule(e) {
 
     /**
-     * Define $button
-     * @type {*|jQuery|HTMLElement}
-     */
-    const $button = $(e.target);
-
-    /**
      * Get page tab
      * @type {Empty}
      */
     const scope = this.scope;
+    const $button = scope.view.getElementByTagName(e, 'button');
 
-    scope.observer.publish(scope.eventManager.eventList.publishRule, [$button.attr('value'), scope.name]);
+    let value = $button.attr('value');
+    if ((value || '').match(/Select rule \(\d+\)/)) {
+      value = undefined;
+    }
+
+    scope.observer.publish(scope.eventManager.eventList.publishRule, [value, scope.name]);
   }
 }
