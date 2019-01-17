@@ -16,8 +16,8 @@ import {aggregation} from '../../lib/extends/aggregation';
  * @class WidgetContentController
  * @extends {PluginController, BasePreferences, WidgetContentPreferencesController, WidgetContentControllerRules}
  */
-export class WidgetContentController extends aggregation(PluginController, BasePreferences, WidgetContentPreferencesController,
-    WidgetContentControllerRules) {
+export class WidgetContentController extends aggregation(PluginController, BasePreferences,
+    WidgetContentPreferencesController, WidgetContentControllerRules) {
 
   /**
    * @param {string} [name]
