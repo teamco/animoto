@@ -6,6 +6,7 @@
  */
 
 import {EmptyElement} from '../../empty/element/empty.element';
+import {LibCss} from '../../../../modules/base/Css';
 
 /**
  * @class ImageElement
@@ -225,7 +226,7 @@ export class ImageElement extends EmptyElement {
     const css = this.view.utils.css;
 
     css.defineCss('transform', $img, 'scaleX({0})'.replace(/\{0}/, scale));
-    css.resetMatrix($img);
+    LibCss.resetMatrix($img);
   }
 
   /**
@@ -240,7 +241,7 @@ export class ImageElement extends EmptyElement {
     const css = this.view.utils.css;
 
     css.defineCss('transform', $img, 'scaleY({0})'.replace(/\{0}/, scale));
-    css.resetMatrix($img);
+    LibCss.resetMatrix($img);
   }
 
   /**
@@ -365,7 +366,7 @@ export class ImageElement extends EmptyElement {
     const css = this.view.utils.css;
 
     css.defineCss('transform', $img, 'rotate({0}deg)'.replace(/\{0}/, rotate));
-    css.resetMatrix($img);
+    LibCss.resetMatrix($img);
   }
 
   /**
@@ -380,7 +381,7 @@ export class ImageElement extends EmptyElement {
     const css = this.view.utils.css;
 
     css.defineCss('transform', $img, 'skewY({0}deg)'.replace(/\{0}/, y));
-    css.resetMatrix($img);
+    LibCss.resetMatrix($img);
   }
 
   /**
@@ -395,7 +396,7 @@ export class ImageElement extends EmptyElement {
     const css = this.view.utils.css;
 
     css.defineCss('transform', $img, 'skewX({0}deg)'.replace(/\{0}/, x));
-    css.resetMatrix($img);
+    LibCss.resetMatrix($img);
   }
 
   /**
