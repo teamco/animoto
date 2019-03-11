@@ -35,4 +35,4 @@ export class EmptyModel extends WidgetContentModel {
      */
     this.rules = {};
   }
-};
+}

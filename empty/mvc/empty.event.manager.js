@@ -23,4 +23,4 @@ export class EmptyEventManager extends WidgetContentEventManager {
     super(name || 'EmptyEventManager', scope);
     this.updateEventList({});
   }
-};
+}
