@@ -278,7 +278,7 @@ export class ImageModel extends EmptyModel {
         value: 0,
         min: 0,
         max: 20,
-        step: 0.1,
+        step: 0.01,
         unit: 'rem',
         monitor: {
           events: ['update.preview'],
@@ -292,7 +292,7 @@ export class ImageModel extends EmptyModel {
         value: 0,
         min: 0,
         max: 50,
-        step: 0.5,
+        step: 0.05,
         unit: '%',
         monitor: {
           events: ['update.preview'],
