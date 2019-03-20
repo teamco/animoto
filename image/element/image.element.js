@@ -325,6 +325,26 @@ export class ImageElement extends EmptyElement {
   }
 
   /**
+   * Update border
+   * @memberOf ImageElement
+   * @param $img
+   * @param border
+   */
+  updateBorder($img, border) {
+    $img.css({border: `${parseFloat(border)}rem solid #333`});
+  }
+
+  /**
+   * Update radius
+   * @memberOf ImageElement
+   * @param $img
+   * @param radius
+   */
+  updateRadius($img, radius) {
+    $img.css({borderRadius: `${parseFloat(radius)}%`});
+  }
+
+  /**
    * Update sepia
    * @memberOf ImageElement
    * @param $img

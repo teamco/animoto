@@ -6,6 +6,7 @@
  */
 
 import {WidgetContentController} from '../../widget.content.controller';
+import {BaseView} from 'js/modules/View';
 
 /**
  * @class EmptyController
@@ -41,7 +42,7 @@ export class EmptyController extends WidgetContentController {
      * @type {Empty}
      */
     const scope = this.scope;
-    const $button = scope.view.getElementByTagName(e, 'button');
+    const $button = BaseView.getElementByTagName(e, 'button');
 
     let value = $button.attr('value');
     if ((value || '').match(/Select rule \(\d+\)/)) {

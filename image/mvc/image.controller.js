@@ -65,7 +65,9 @@ export class ImageController extends EmptyController {
       updateRotate: this.model.getPrefs('imageRotate'),
       updateSkewY: this.model.getPrefs('imageSkewY'),
       updateSkewX: this.model.getPrefs('imageSkewX'),
-      updateDropShadow: this.model.getPrefs('imageDropShadow')
+      updateDropShadow: this.model.getPrefs('imageDropShadow'),
+      updateBorder: this.model.getPrefs('imageBorder'),
+      updateRadius: this.model.getPrefs('imageRadius')
     });
   }
 

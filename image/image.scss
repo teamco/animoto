@@ -17,6 +17,8 @@
   .image-prefs {
     &.range {
       width: 10rem;
+      float: left;
+      margin-right: 8rem;
     }
 
     .w-16,
@@ -37,15 +39,12 @@
   }
 
   .image-preview {
-    max-width: 45%;
-    max-height: 50%;
+    width: 12rem;
     overflow: hidden;
     z-index: 1;
     position: absolute;
-    left: 50%;
-    top: 180px;
-    margin-left: 10px;
-    margin-top: 5px;
+    right: 1rem;
+    top: 185px;
     border: 5px solid #dfdfdf;
     padding: 5px;
 
