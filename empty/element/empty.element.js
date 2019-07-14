@@ -32,4 +32,11 @@ export class EmptyElement extends PluginElement {
   configElement(view, opts) {
     this._config(view, opts, $('<content />')).build(opts);
   }
+
+  /**
+   * @memberOf EmptyElement
+   */
+  renderEmbeddedContent() {
+    this.view.scope.logger.debug('Render empty content');
+  }
 }
