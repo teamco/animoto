@@ -74,11 +74,11 @@ export class ImageElement extends EmptyElement {
       return false;
     }
     this.$.css({
+      height: '100%',
       backgroundImage: `url('${opts.url}')`,
       backgroundRepeat: repeat,
       backgroundSize: opts.stretch ? 'cover' : 'auto'
     });
-
   }
 
   /**
