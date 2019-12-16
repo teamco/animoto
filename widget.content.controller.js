@@ -84,7 +84,7 @@ export class WidgetContentController extends aggregation(PluginController, BaseP
    */
   transferEvents(events) {
     for (let event in events) {
-      if (events.hasOwnProperty(event)) {
+      if (Object.prototype.hasOwnProperty.call(events, event)) {
 
         /**
          * Define event
@@ -110,7 +110,7 @@ export class WidgetContentController extends aggregation(PluginController, BaseP
      */
     const widget = this.controller.getContainment();
 
-    if (!widget.eventManager.eventList.hasOwnProperty(eventName)) {
+    if (Object.prototype.hasOwnProperty.call(!widget.eventManager.eventList, eventName)) {
       this.logger.warn('Undefined event', eventName);
       return false;
     }
@@ -154,7 +154,7 @@ export class WidgetContentController extends aggregation(PluginController, BaseP
     const prefs = this.model.preferences;
 
     for (let index in prefs) {
-      if (prefs.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(prefs, index)) {
         this.observer.publish(this.eventManager.eventList.alternativeSavePreferences,
             [index, prefs[index].value, false]);
       }
@@ -274,7 +274,7 @@ export class WidgetContentController extends aggregation(PluginController, BaseP
       const widgetsList = gallery.model.getDataProvider();
 
       // Get widgets list
-      prefs.metamorphicType.list = $.map(widgetsList, widget => {
+      prefs.metamorphicType.list = window.$.map(widgetsList, widget => {
         if (widget.resource !== 'metamorphic' && !widget.is_external) {
           return {
             resource: widget.resource,
@@ -359,7 +359,7 @@ export class WidgetContentController extends aggregation(PluginController, BaseP
   analyzeEmbeddedContent() {
 
     // Fetch mimicry content
-    const mimicry = this.controller.isContentMimicry();
+    //const mimicry = this.controller.isContentMimicry();
 
     // if (mimicry) {
     //

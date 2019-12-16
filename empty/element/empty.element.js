@@ -30,7 +30,7 @@ export class EmptyElement extends PluginElement {
    * @param opts
    */
   configElement(view, opts) {
-    this._config(view, opts, $('<content />')).build(opts);
+    this._config(view, opts, window.$('<content />')).build(opts);
   }
 
   /**

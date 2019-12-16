@@ -36,7 +36,7 @@ export class PageTabsController extends EmptyController {
     const pages = ws.model.getItems();
 
     for (let index in pages) {
-      if (pages.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(pages, index)) {
 
         /**
          * Get page
@@ -161,10 +161,11 @@ export class PageTabsController extends EmptyController {
    */
   switchToPage($page, e) {
     if ($page.pageUrl) {
-      this.logger.debug('Open url', arguments);
+      this.logger.debug('Open url', arguments, e);
       this.observer.publish(this.eventManager.eventList.openUrlOnEvent, [
         $page.pageUrl, true,
-        $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog]);
+        $page.pageTab.model.getConfig('preferences').pageOpenUrlInDialog
+      ]);
     } else {
 
       /**

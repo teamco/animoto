@@ -23,7 +23,7 @@ export class EmptyPreferencesElement extends aggregation(PluginElement, WidgetPr
    */
   constructor(name, view, opts) {
     super(name || 'EmptyPreferencesElement', view, false);
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, window.$('<div />')).build(opts);
     this.renderBasePrefsData(opts.data);
   }
 }

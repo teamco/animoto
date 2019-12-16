@@ -39,7 +39,7 @@ export class PageTabsItemElement extends PluginElement {
    * @param opts
    */
   configElement(view, opts) {
-    this._config(view, opts, $('<li role="presentation" />')).build(opts);
+    this._config(view, opts, window.$('<li role="presentation" />')).build(opts);
     this.initContent();
   }
 
@@ -76,7 +76,7 @@ export class PageTabsItemElement extends PluginElement {
      */
     this.pageUrl = preferences.pageUrl;
 
-    this.$.append($('<a />').attr({title: this.title}).text(this.title));
+    this.window.$.append(window.$('<a />').attr({title: this.title}).text(this.title));
 
     this.setTitle(this.title);
     this.bindClick();
@@ -87,7 +87,7 @@ export class PageTabsItemElement extends PluginElement {
    * @memberOf PageTabsItemElement
    */
   bindClick() {
-    this.$[0].addEventListener('click', this.clickCallback.bind(this), false);
+    this.window.$[0].addEventListener('click', this.clickCallback.bind(this), false);
   }
 
   /**

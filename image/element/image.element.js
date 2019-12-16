@@ -31,7 +31,7 @@ export class ImageElement extends EmptyElement {
    * @param opts
    */
   configElement(view, opts) {
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, window.$('<div />')).build(opts);
 
     /**
      * Define element
@@ -51,7 +51,7 @@ export class ImageElement extends EmptyElement {
      * Define $img
      * @type {*|jQuery}
      */
-    this.$img = $('<img />').attr({
+    this.$img = window.$('<img />').attr({
       src: opts.url,
       alt: opts.text,
       title: opts.text
@@ -127,14 +127,14 @@ export class ImageElement extends EmptyElement {
   updateFilters(opts) {
 
     // Get image
-    const $img = $('img', this.$);
+    const $img = window.$('img', this.$);
 
     if (!$img.length) {
       return false;
     }
 
     for (let index in opts) {
-      if (opts.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(opts, index)) {
         if (index.match(/^update/)) {
 
           /**
@@ -203,7 +203,7 @@ export class ImageElement extends EmptyElement {
      * Define $img
      * @type {*|jQuery}
      */
-    $image.$img = $('<img />').attr({
+    $image.$img = window.$('<img />').attr({
       src: img.src,
       alt: opts.text,
       title: opts.text
@@ -435,14 +435,14 @@ export class ImageElement extends EmptyElement {
     function _activateRange(activate) {
 
       // Get range inputs
-      let $range = $('input[type="range"]'),
+      let $range = window.$('input[type="range"]'),
           i = 0, l = $range.length;
 
       $range.prop({disabled: !activate});
 
       if (activate) {
         for (; i < l; i++) {
-          $($range[i]).trigger('blur.range');
+          window.$($range[i]).trigger('blur.range');
         }
       }
     }

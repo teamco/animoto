@@ -1,11 +1,3 @@
-/**
- * Created with JetBrains RubyMine.
- * User: teamco
- * Date: 11/17/12
- * Time: 5:28 PM
- * To change this template use File | Settings | File Templates.
- */
-
 import {EmptyEventManager} from '../../empty/mvc/empty.event.manager';
 
 /**
@@ -26,5 +18,5 @@ export class ImageEventManager extends EmptyEventManager {
       checkEmbeddedContent: 'check.embedded.content',
       splitEmbeddedContent: 'split.embedded.content'
     });
-  };
+  }
 }

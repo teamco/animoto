@@ -52,7 +52,7 @@ export class Empty extends AntHill {
     this.referrer = undefined;
 
     this.initContent(opts);
-  };
+  }
 
   /**
    * @memberOf Empty

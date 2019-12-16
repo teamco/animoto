@@ -37,7 +37,7 @@ export class PageTabsElement extends EmptyElement {
    * @param opts
    */
   configElement(view, opts) {
-    this._config(view, opts, $('<ul class="nav nav-tabs" />')).build(opts);
+    this._config(view, opts, window.$('<ul class="nav nav-tabs" />')).build(opts);
   }
 
   /**
@@ -59,7 +59,7 @@ export class PageTabsElement extends EmptyElement {
     let tabs = [], order, show;
 
     for (let index in pages) {
-      if (pages.hasOwnProperty(index)) {
+      if (Object.prototype.hasOwnProperty.call(pages, index)) {
 
         /**
          * Get item
@@ -83,7 +83,7 @@ export class PageTabsElement extends EmptyElement {
 
           /**
            * @constant $tab
-           * @type {PageTabsItemElement.$|jQuery}
+           * @type {PageTabsItemElement.window.$|jQuery}
            */
           const $tab = this.view.renderPageTabsItem(item);
 
@@ -92,7 +92,7 @@ export class PageTabsElement extends EmptyElement {
       }
     }
 
-    this.$.append(tabs);
+    this.window.$.append(tabs);
   }
 
   /**
@@ -103,7 +103,7 @@ export class PageTabsElement extends EmptyElement {
   setPageTabAsCurrent(page) {
 
     // Reset current state
-    $('li', this.$).removeClass(this.current);
+    window.$('li', this.window.$).removeClass(this.current);
 
     /**
      * Get current page title
@@ -111,6 +111,6 @@ export class PageTabsElement extends EmptyElement {
      */
     const title = page.model.getItemTitle();
 
-    $('li:contains("' + title + '")', this.$).addClass(this.current);
+    window.$('li:contains("' + title + '")', this.window.$).addClass(this.current);
   }
 }

@@ -37,7 +37,7 @@ export class Image extends Empty {
      * @property Image
      */
     this.image = image;
-  };
+  }
 
   /**
    * @memberOf Image

@@ -23,7 +23,7 @@ export class EmptyRulesElement extends aggregation(PluginElement, BaseRules) {
    */
   constructor(name, view, opts) {
     super(name || 'EmptyRulesElement', view, false);
-    this._config(view, opts, $('<div />')).build(opts);
+    this._config(view, opts, window.$('<div />')).build(opts);
     this.renderBaseRulesData(opts.data, opts.rules.widget, opts.rules.content);
   }
 }

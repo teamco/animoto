@@ -130,7 +130,7 @@ export class WidgetContentModel extends BaseModel {
     }
 
     for (let index in prefs) {
-      if (prefs.hasOwnProperty(index) && index.match(new RegExp(cname))) {
+      if (Object.prototype.hasOwnProperty.call(prefs, index) && index.match(new RegExp(cname))) {
         this.setPrefs(index, prefs[index].value);
         this.scope.logger.debug('Copied prefs', source, index, prefs[index]);
       }

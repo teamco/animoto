@@ -80,7 +80,7 @@ export class WidgetContentEventManager extends BaseEvent {
    * @param events
    */
   updateEventList(events) {
-    $.extend(this.eventList, events);
+    window.$.extend(this.eventList, events);
   }
 
   /**

@@ -37,7 +37,7 @@ export class PageTabs extends Empty {
      * @property PageTabs
      */
     this.image = image;
-  };
+  }
 
   /**
    * @memberOf PageTabs
